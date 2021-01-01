@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RESERVATIONS } from '../mock-reservations';
 import { Reservation } from '../reservation';
+import { ReservationService } from '../reservation.service';
 
 @Component({
   selector: 'app-reservations-list',
@@ -20,11 +20,19 @@ import { Reservation } from '../reservation';
 })
 export class ReservationsListComponent implements OnInit {
   selectedReservation?: Reservation;
-  reservationsList: Reservation[] = RESERVATIONS;
+  reservationsList: Reservation[] = [];
 
-  constructor() {}
+  constructor(private reservationService: ReservationService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getReservations();
+  }
+
+  getReservations(): void {
+    this.reservationService
+      .getReservations()
+      .subscribe(reservationsList => (this.reservationsList = reservationsList));
+  }
 
   onSelect(reservation: Reservation): void {
     this.selectedReservation = reservation;
