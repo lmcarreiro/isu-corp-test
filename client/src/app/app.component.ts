@@ -13,6 +13,4 @@ import { Component } from '@angular/core';
   `,
   styles: [],
 })
-export class AppComponent {
-  title = 'ISUCorp Test App';
-}
+export class AppComponent {}
