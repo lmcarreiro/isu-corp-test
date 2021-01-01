@@ -1,5 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
 import { Reservation } from '../reservation';
+import { ReservationService } from '../reservation.service';
 
 @Component({
   selector: 'app-reservation-detail',
@@ -11,14 +15,38 @@ import { Reservation } from '../reservation';
       <label>name:</label>
       <input [(ngModel)]="reservation.name" placeholder="name" />
     </div>
+    <button (click)="goBack()">go back</button>
   `,
   styles: [],
 })
 export class ReservationDetailComponent implements OnInit {
-  @Input()
-  reservation!: Reservation;
+  emptyReservation: Reservation = {
+    id: 0,
+    name: '',
+  };
 
-  constructor() {}
+  reservation: Reservation = this.emptyReservation;
 
-  ngOnInit(): void {}
+  constructor(
+    private route: ActivatedRoute,
+    private reservationService: ReservationService,
+    private location: Location
+  ) {}
+
+  ngOnInit(): void {
+    this.getReservation();
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  getReservation(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.reservationService.getReservationById(parseInt(id)).subscribe(reservation => {
+        this.reservation = reservation || this.emptyReservation;
+      });
+    }
+  }
 }

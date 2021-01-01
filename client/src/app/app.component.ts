@@ -8,7 +8,10 @@ import { Component } from '@angular/core';
       <h1><strong>ISU</strong>Corp</h1>
       <h2>World Class<br />Software Development</h2>
     </div>
-    <app-reservations-list></app-reservations-list>
+    <nav>
+      <a routerLink="/reservations-list">Reservations</a><br />
+      <a routerLink="/reservation">Create new reservation</a><br />
+    </nav>
     <router-outlet></router-outlet>
     <app-messages></app-messages>
   `,
