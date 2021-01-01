@@ -10,6 +10,7 @@ import { Component } from '@angular/core';
     </div>
     <app-reservations-list></app-reservations-list>
     <router-outlet></router-outlet>
+    <app-messages></app-messages>
   `,
   styles: [],
 })

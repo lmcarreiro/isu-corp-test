@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from '../message.service';
 import { Reservation } from '../reservation';
 import { ReservationService } from '../reservation.service';
 
@@ -22,7 +23,10 @@ export class ReservationsListComponent implements OnInit {
   selectedReservation?: Reservation;
   reservationsList: Reservation[] = [];
 
-  constructor(private reservationService: ReservationService) {}
+  constructor(
+    private reservationService: ReservationService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
     this.getReservations();
@@ -36,5 +40,6 @@ export class ReservationsListComponent implements OnInit {
 
   onSelect(reservation: Reservation): void {
     this.selectedReservation = reservation;
+    this.messageService.add(`ReservationsListComponent: Selected reservation id=${reservation.id}`);
   }
 }
