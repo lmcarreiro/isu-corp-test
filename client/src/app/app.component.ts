@@ -28,5 +28,5 @@ import { Component } from '@angular/core';
   styles: []
 })
 export class AppComponent {
-  title = 'isu-corp-test';
+  title = 'ISUCorp Test App';
 }
