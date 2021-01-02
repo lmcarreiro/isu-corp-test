@@ -22,9 +22,9 @@ import { AppService, HeaderData } from '../app.service';
           {{ headerData?.description }}
         </div>
         <div class="nav-button">
-          <a routerLink="{{ headerData?.navigationTarget }}">
-            <button class="secondary">{{ headerData?.navigationLabel }}</button>
-          </a>
+          <button routerLink="{{ headerData?.navigationTarget }}" class="secondary">
+            {{ headerData?.navigationLabel }}
+          </button>
         </div>
       </div>
     </div>
