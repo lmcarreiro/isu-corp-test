@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
-import { Reservation } from '../models/reservation';
+import { ReservationListItem } from '../models/reservation-list-item';
 import { ReservationService } from '../services/reservation.service';
 
 @Component({
@@ -18,7 +18,7 @@ import { ReservationService } from '../services/reservation.service';
   styles: [],
 })
 export class ReservationsListComponent implements OnInit {
-  reservationsList: Reservation[] = [];
+  reservationsList: ReservationListItem[] = [];
 
   constructor(private appService: AppService, private reservationService: ReservationService) {}
 

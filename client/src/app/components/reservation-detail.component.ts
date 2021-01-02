@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Reservation } from '../models/reservation';
+import { ReservationListItem } from '../models/reservation-list-item';
 import { ReservationService } from '../services/reservation.service';
 import { AppService } from '../app.service';
 
@@ -22,12 +22,16 @@ import { AppService } from '../app.service';
   styles: [],
 })
 export class ReservationDetailComponent implements OnInit {
-  emptyReservation: Reservation = {
+  // TODO: use another model for this
+  emptyReservation: ReservationListItem = {
     id: 0,
     name: '',
+    date: '',
+    favorite: false,
+    ranking: 0,
   };
 
-  reservation: Reservation = this.emptyReservation;
+  reservation: ReservationListItem = this.emptyReservation;
 
   constructor(
     private appService: AppService,
