@@ -3,13 +3,13 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
+import { InMemoryDataService } from './services/in-memory-data.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReservationsListComponent } from './reservations-list/reservations-list.component';
-import { ReservationDetailComponent } from './reservation-detail/reservation-detail.component';
-import { MessagesComponent } from './messages/messages.component';
+import { ReservationsListComponent } from './components/reservations-list.component';
+import { ReservationDetailComponent } from './components/reservation-detail.component';
+import { MessagesComponent } from './components/messages.component';
 
 @NgModule({
   declarations: [

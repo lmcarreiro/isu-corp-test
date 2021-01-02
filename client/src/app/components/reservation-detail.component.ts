@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Reservation } from '../reservation';
-import { ReservationService } from '../reservation.service';
+import { Reservation } from '../models/reservation';
+import { ReservationService } from '../services/reservation.service';
 
 @Component({
   selector: 'app-reservation-detail',

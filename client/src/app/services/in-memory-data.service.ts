@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { RESERVATIONS } from './mock-reservations';
-import { Reservation } from './reservation';
+import { RESERVATIONS } from '../mock/mock-reservations';
+import { Reservation } from '../models/reservation';
 
 @Injectable({
   providedIn: 'root',

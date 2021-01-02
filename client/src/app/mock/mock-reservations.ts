@@ -1,4 +1,4 @@
-import { Reservation } from './reservation';
+import { Reservation } from '../models/reservation';
 
 export const RESERVATIONS: Reservation[] = [
   { id: 11, name: 'Dr Nice' },
