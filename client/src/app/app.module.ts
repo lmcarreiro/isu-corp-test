@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { ReservationsListComponent } from './components/reservations-list.component';
 import { ReservationDetailComponent } from './components/reservation-detail.component';
 import { MessagesComponent } from './components/messages.component';
+import { HeaderComponent } from './components/header.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { MessagesComponent } from './components/messages.component';
     ReservationsListComponent,
     ReservationDetailComponent,
     MessagesComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
