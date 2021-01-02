@@ -24,13 +24,33 @@ import { ReservationService } from '../services/reservation.service';
           </ng-template>
         </ng-select>
       </div>
-      <ul>
-        <li *ngFor="let reservation of reservationsList">
-          <a routerLink="/reservation/{{ reservation.id }}">
-            <span class="badge">{{ reservation.id }}</span> {{ reservation.name }}
-          </a>
-        </li>
-      </ul>
+      <table class="reservations-table">
+        <tbody>
+          <tr *ngFor="let reservation of reservationsList">
+            <td>
+              <img
+                style="display: block; margin-left: 3px;"
+                src="../../assets/icon-reservation.jpg"
+              />
+            </td>
+            <td>
+              <div>
+                <div class="title">{{ reservation.name }}</div>
+                <div class="date">{{ reservation.date }}</div>
+              </div>
+            </td>
+            <td>
+              {{ reservation.ranking }}
+            </td>
+            <td>
+              {{ reservation.favorite }}
+            </td>
+            <td>
+              <button routerLink="/reservation/{{ reservation.id }}" class="secondary">Edit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   `,
   styles: [
@@ -38,6 +58,33 @@ import { ReservationService } from '../services/reservation.service';
       .container {
         background: white;
         padding: 15px;
+      }
+      .reservations-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+      }
+      .reservations-table tr {
+        background: #eee;
+      }
+      .reservations-table td {
+        padding: 3px;
+        text-align: center;
+        vertical-align: middle;
+      }
+      .reservations-table tr td:nth-child(1) {
+        width: 42px;
+      }
+      .reservations-table tr td:nth-child(2) {
+        text-align: left;
+      }
+      .reservations-table tr td:nth-child(5) {
+        width: 100px;
+      }
+
+      .date {
+        color: grey;
+        font-size: 0.8em;
       }
     `,
   ],
