@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 
 import { Reservation } from '../models/reservation';
 import { ReservationService } from '../services/reservation.service';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-reservation-detail',
@@ -29,12 +30,20 @@ export class ReservationDetailComponent implements OnInit {
   reservation: Reservation = this.emptyReservation;
 
   constructor(
+    private appService: AppService,
     private route: ActivatedRoute,
     private reservationService: ReservationService,
     private location: Location
   ) {}
 
   ngOnInit(): void {
+    this.appService.setHeaderData({
+      title: 'Create Reservation',
+      navigationLabel: 'Reservations List',
+      navigationTarget: '/reservations-list',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    });
     this.getReservation();
   }
 

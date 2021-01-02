@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../app.service';
 import { Reservation } from '../models/reservation';
 import { ReservationService } from '../services/reservation.service';
 
@@ -19,9 +20,16 @@ import { ReservationService } from '../services/reservation.service';
 export class ReservationsListComponent implements OnInit {
   reservationsList: Reservation[] = [];
 
-  constructor(private reservationService: ReservationService) {}
+  constructor(private appService: AppService, private reservationService: ReservationService) {}
 
   ngOnInit(): void {
+    this.appService.setHeaderData({
+      title: 'Reservations List',
+      navigationLabel: 'Create reservation',
+      navigationTarget: '/reservation',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    });
     this.getReservations();
   }
 

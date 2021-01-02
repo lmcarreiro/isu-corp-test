@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService, HeaderData } from '../app.service';
 
 @Component({
   selector: 'app-header',
@@ -15,15 +16,15 @@ import { Component, OnInit } from '@angular/core';
       </div>
     </div>
     <div class="title">
-      <div class="title-content">
-        <div class="text">Reservations List</div>
+      <div *ngIf="headerData" class="title-content">
+        <div class="text">{{ headerData?.title }}</div>
         <div class="description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          {{ headerData?.description }}
         </div>
         <div class="nav-button">
-          <a routerLink="/reservation"><button class="secondary">Create reservation</button></a>
+          <a routerLink="{{ headerData?.navigationTarget }}">
+            <button class="secondary">{{ headerData?.navigationLabel }}</button>
+          </a>
         </div>
       </div>
     </div>
@@ -82,7 +83,13 @@ import { Component, OnInit } from '@angular/core';
   ],
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  headerData?: HeaderData;
 
-  ngOnInit(): void {}
+  constructor(private appService: AppService) {}
+
+  ngOnInit(): void {
+    this.appService.headerData$.subscribe(headerData => {
+      this.headerData = headerData;
+    });
+  }
 }
