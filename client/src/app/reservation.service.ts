@@ -11,21 +11,32 @@ import { Reservation } from './reservation';
 export class ReservationService {
   private reservationsUrl = 'api/reservations';
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  };
+
   constructor(private http: HttpClient, private messageService: MessageService) {}
 
   getReservationById(id: number): Observable<Reservation | undefined> {
     // TODO: send the message _after_ fetching the reservation
     return this.http.get<Reservation>(`${this.reservationsUrl}/${id}`).pipe(
       tap(_ => this.log(`fetched reservation id=${id}`)),
-      catchError(this.handleError<Reservation>(`getHero id=${id}`))
+      catchError(this.handleError<Reservation>(`getReservationById id=${id}`))
     );
   }
 
   getReservations(): Observable<Reservation[]> {
     // TODO: send the message _after_ fetching the reservations
     return this.http.get<Reservation[]>(this.reservationsUrl).pipe(
-      tap(_ => this.log('fetched heroes')),
-      catchError(this.handleError<Reservation[]>('getHeroes', []))
+      tap(_ => this.log('fetched reservations')),
+      catchError(this.handleError<Reservation[]>('getReservations', []))
+    );
+  }
+
+  updateReservation(reservation: Reservation): Observable<void> {
+    return this.http.put(this.reservationsUrl, reservation, this.httpOptions).pipe(
+      tap(_ => this.log(`updated reservation id=${reservation.id}`)),
+      catchError(this.handleError<any>('updateReservation'))
     );
   }
 

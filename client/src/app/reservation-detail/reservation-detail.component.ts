@@ -15,6 +15,7 @@ import { ReservationService } from '../reservation.service';
       <label>name:</label>
       <input [(ngModel)]="reservation.name" placeholder="name" />
     </div>
+    <button (click)="save()">save</button>
     <button (click)="goBack()">go back</button>
   `,
   styles: [],
@@ -48,5 +49,9 @@ export class ReservationDetailComponent implements OnInit {
         this.reservation = reservation || this.emptyReservation;
       });
     }
+  }
+
+  save(): void {
+    this.reservationService.updateReservation(this.reservation).subscribe(() => this.goBack());
   }
 }
