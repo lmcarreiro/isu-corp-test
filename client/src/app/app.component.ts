@@ -4,9 +4,18 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <app-header></app-header>
-    <router-outlet></router-outlet>
-    <app-messages></app-messages>
+    <div class="content">
+      <router-outlet></router-outlet>
+      <app-messages></app-messages>
+    </div>
   `,
-  styles: [],
+  styles: [
+    `
+      .content {
+        max-width: 1200px;
+        margin: 0px auto;
+      }
+    `,
+  ],
 })
 export class AppComponent {}
