@@ -22,32 +22,37 @@ namespace IsuCorpTest.Data
             // Creates the database if not exists
             context.Database.EnsureCreated();
 
-            // Adds a publisher
-            var publisher = new Publisher
+            ContactType[] contactTypes = new[]
             {
-                Name = "Mariner Books"
+                new ContactType { Name = "Contact Type 1" },
+                new ContactType { Name = "Contact Type 2" },
+                new ContactType { Name = "Contact Type 3" },
             };
-            context.Publisher.Add(publisher);
+            context.ContactType.AddRange(contactTypes);
 
-            // Adds some books
-            context.Book.Add(new Book
+            Contact[] contacts = new[]
             {
-                ISBN = "978-0544003415",
-                Title = "The Lord of the Rings",
-                Author = "J.R.R. Tolkien",
-                Language = "English",
-                Pages = 1216,
-                Publisher = publisher
-            });
-            context.Book.Add(new Book
+                new Contact { Name = "Second Dock"  , Phone = "+55 21 987-654-321", BirthDate = new DateTime(2001, 12,  1), Type = contactTypes[0] },
+                new Contact { Name = "Primer Puerto", Phone = "+55 21 987-654-321", BirthDate = new DateTime(2002, 10,  5), Type = contactTypes[0] },
+                new Contact { Name = "Stella"       , Phone = "+55 21 987-654-321", BirthDate = new DateTime(2003,  8, 10), Type = contactTypes[1] },
+                new Contact { Name = "Island Creek" , Phone = "+55 21 987-654-321", BirthDate = new DateTime(2004,  6, 15), Type = contactTypes[1] },
+                new Contact { Name = "Fogo the Chao", Phone = "+55 21 987-654-321", BirthDate = new DateTime(2005,  4, 20), Type = contactTypes[2] },
+                new Contact { Name = "Fontana"      , Phone = "+55 21 987-654-321", BirthDate = new DateTime(2006,  2, 25), Type = contactTypes[2] },
+            };
+            context.Contact.AddRange(contacts);
+
+            Reservation[] reservations = new[]
             {
-                ISBN = "978-0547247762",
-                Title = "The Sealed Letter",
-                Author = "Emma Donoghue",
-                Language = "English",
-                Pages = 416,
-                Publisher = publisher
-            });
+                new Reservation { Contact = contacts[0], Favorite = true , Ranking = 4   , Description = "Test number <b>1</b>" },
+                new Reservation { Contact = contacts[1], Favorite = false, Ranking = 3   , Description = "Test number <b>2</b>" },
+                new Reservation { Contact = contacts[2], Favorite = false, Ranking = 2   , Description = "Test number <b>3</b>" },
+                new Reservation { Contact = contacts[3], Favorite = false, Ranking = 2   , Description = "Test number <b>4</b>" },
+                new Reservation { Contact = contacts[4], Favorite = true , Ranking = 2   , Description = "Test number <b>5</b>" },
+                new Reservation { Contact = contacts[5], Favorite = false, Ranking = 2   , Description = "Test number <b>6</b>" },
+                new Reservation { Contact = contacts[3], Favorite = true , Ranking = 1   , Description = "Test number <b>7</b>" },
+                new Reservation { Contact = contacts[4], Favorite = false, Ranking = null, Description = "Test number <b>8</b>" },
+            };
+            context.Reservation.AddRange(reservations);
 
             // Saves changes
             context.SaveChanges();
@@ -55,15 +60,14 @@ namespace IsuCorpTest.Data
 
         public void PrintData()
         {
-            // Gets and prints all books in database
-            var books = context.Book
-                .Include(p => p.Publisher);
-            foreach (var book in books)
+            // Gets and prints all reservations in database
+            var reservations = context.Reservation.Include(p => p.Contact);
+
+            foreach (var r in reservations)
             {
                 var data = new StringBuilder();
-                data.AppendLine($"ISBN: {book.ISBN}");
-                data.AppendLine($"Title: {book.Title}");
-                data.AppendLine($"Publisher: {book.Publisher.Name}");
+                data.AppendLine($"Description: {r.Description}");
+                data.AppendLine($"Contact Name: {r.Contact.Name}");
                 Console.WriteLine(data.ToString());
             }
         }

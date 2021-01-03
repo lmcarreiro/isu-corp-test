@@ -6,20 +6,28 @@ using System.Threading.Tasks;
 
 namespace IsuCorpTest.Data.Models
 {
-    public class Book
+    public class ContactType
     {
-        public string ISBN { get; set; }
-        public string Title { get; set; }
-        public string Author { get; set; }
-        public string Language { get; set; }
-        public int Pages { get; set; }
-        public virtual Publisher Publisher { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 
-    public class Publisher
+    public class Contact
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<Book> Books { get; set; }
+        public string Phone { get; set; }
+        public DateTime BirthDate { get; set; }
+        public virtual ContactType Type { get; set; }
+        public virtual ICollection<Reservation> Reservations { get; set; }
+    }
+
+    public class Reservation
+    {
+        public int Id { get; set; }
+        public string Description { get; set; }
+        public bool Favorite { get; set; }
+        public int? Ranking { get; set; }
+        public virtual Contact Contact { get; set; }
     }
 }

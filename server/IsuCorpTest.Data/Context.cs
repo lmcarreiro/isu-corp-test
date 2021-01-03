@@ -10,9 +10,11 @@ namespace IsuCorpTest.Data
 {
     public class DataContext : DbContext
     {
-        public DbSet<Book> Book { get; set; }
+        public DbSet<ContactType> ContactType { get; set; }
 
-        public DbSet<Publisher> Publisher { get; set; }
+        public DbSet<Contact> Contact { get; set; }
+
+        public DbSet<Reservation> Reservation { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options)
             : base(options) { }
@@ -21,18 +23,34 @@ namespace IsuCorpTest.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Publisher>(entity =>
+            modelBuilder.Entity<ContactType>(entity =>
             {
-                entity.HasKey(e => e.ID);
+                entity.HasKey(e => e.Id);
                 entity.Property(e => e.Name).IsRequired();
             });
 
-            modelBuilder.Entity<Book>(entity =>
+            modelBuilder.Entity<Contact>(entity =>
             {
-                entity.HasKey(e => e.ISBN);
-                entity.Property(e => e.Title).IsRequired();
-                entity.HasOne(d => d.Publisher)
-                  .WithMany(p => p.Books);
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Name).IsRequired();
+                entity.Property(e => e.Phone).IsRequired();
+                entity.Property(e => e.BirthDate).IsRequired();
+
+                entity.HasOne(e => e.Type).WithMany()
+                    .IsRequired()
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<Reservation>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Description).IsRequired();
+                entity.Property(e => e.Favorite).IsRequired();
+                entity.Property(e => e.Ranking);
+
+                entity.HasOne(e => e.Contact).WithMany(c => c.Reservations)
+                    .IsRequired()
+                    .OnDelete(DeleteBehavior.Cascade);
             });
         }
     }
