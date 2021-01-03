@@ -45,6 +45,7 @@ export class ReservationDetailComponent implements OnInit {
       title: 'Create Reservation',
       navigationLabel: 'Reservations List',
       navigationTarget: '/reservations-list',
+      navigationArrow: 'left',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     });

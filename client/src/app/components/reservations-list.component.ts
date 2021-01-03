@@ -27,7 +27,7 @@ import { ReservationService } from '../services/reservation.service';
       <table class="reservations-table">
         <tbody>
           <tr *ngFor="let reservation of reservationsList">
-            <td>
+            <td class="hide-on-mobile">
               <img
                 style="display: block; margin-left: 3px;"
                 src="../../assets/icon-reservation.jpg"
@@ -39,7 +39,7 @@ import { ReservationService } from '../services/reservation.service';
                 <div class="date">{{ reservation.date }}</div>
               </div>
             </td>
-            <td>
+            <td class="hide-on-mobile">
               <div style="font-size: 0.9em;">Ranking</div>
               <div>
                 <star-rating
@@ -87,7 +87,7 @@ import { ReservationService } from '../services/reservation.service';
       .reservations-table {
         width: 100%;
         border-collapse: separate;
-        border-spacing: 0 10px;
+        border-spacing: 0 5px;
       }
       .reservations-table tr {
         background: #eee;
@@ -173,6 +173,7 @@ export class ReservationsListComponent implements OnInit {
       title: 'Reservations List',
       navigationLabel: 'Create reservation',
       navigationTarget: '/reservation',
+      navigationArrow: 'right',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     });

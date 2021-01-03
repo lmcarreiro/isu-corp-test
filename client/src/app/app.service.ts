@@ -19,4 +19,5 @@ export interface HeaderData {
   description: string;
   navigationLabel: string;
   navigationTarget: string;
+  navigationArrow?: 'left' | 'right';
 }

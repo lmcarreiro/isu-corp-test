@@ -25,3 +25,17 @@ button.secondary {
   color: white;
   background-color: grey;
 }
+
+/* Mobile only */
+@media (max-width: 767.9px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
+
+/* Desktop only */
+@media (min-width: 768px) {
+  .only-on-mobile {
+    display: none !important;
+  }
+}
