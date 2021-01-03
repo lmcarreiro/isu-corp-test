@@ -29,7 +29,7 @@ import { AppService } from '../app.service';
 })
 export class ReservationDetailComponent implements OnInit {
   // TODO: use another model for this
-  emptyReservation: Reservation = {
+  emptyReservation = {
     id: 0,
     description: '',
     contact: {
@@ -76,6 +76,8 @@ export class ReservationDetailComponent implements OnInit {
   }
 
   save(): void {
-    this.reservationService.updateReservation(this.reservation).subscribe(() => this.goBack());
+    this.reservationService
+      .updateReservation(this.reservation as any)
+      .subscribe(() => this.goBack());
   }
 }
