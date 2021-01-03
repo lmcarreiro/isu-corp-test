@@ -26,10 +26,22 @@ button.secondary {
   background-color: grey;
 }
 
+.padding-top-10 {
+  padding-top: 10px;
+}
+
+.padding-top-20 {
+  padding-top: 20px;
+}
+
 /* Mobile only */
 @media (max-width: 767.9px) {
   .hide-on-mobile {
     display: none !important;
+  }
+
+  .full-width-on-mobile {
+    width: 100% !important;
   }
 }
 

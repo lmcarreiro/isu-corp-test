@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <app-header></app-header>
     <div class="content">
+      <div class="padding-top-20 hide-on-mobile"></div>
       <router-outlet></router-outlet>
       <app-messages></app-messages>
     </div>
@@ -12,7 +13,6 @@ import { Component } from '@angular/core';
   styles: [
     `
       .content {
-        padding-top: 20px;
         max-width: 1024px;
         margin: 0px auto;
       }

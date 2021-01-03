@@ -13,6 +13,7 @@ import { ReservationsListComponent } from './components/reservations-list.compon
 import { ReservationDetailComponent } from './components/reservation-detail.component';
 import { MessagesComponent } from './components/messages.component';
 import { HeaderComponent } from './components/header.component';
+import { DropdownComponent } from './components/dropdown.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HeaderComponent } from './components/header.component';
     ReservationDetailComponent,
     MessagesComponent,
     HeaderComponent,
+    DropdownComponent,
   ],
   imports: [
     BrowserModule,

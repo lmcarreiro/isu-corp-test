@@ -7,22 +7,12 @@ import { ReservationService } from '../services/reservation.service';
   selector: 'app-reservations-list',
   template: `
     <div class="container">
-      <div style="width: 260px;">
-        <ng-select
-          [items]="sortingOptions"
-          [searchable]="false"
-          [clearable]="false"
-          bindLabel="name"
-          bindValue="id"
-          [(ngModel)]="sorting"
-        >
-          <ng-template ng-label-tmp let-item="item">
-            <div style="display: flex; align-items: center;">
-              <img src="../../assets/icon-sorting.jpg" />
-              <span>{{ item.name }}</span>
-            </div>
-          </ng-template>
-        </ng-select>
+      <div class="sorting-dropdown full-width-on-mobile" style="width: 260px;">
+        <util-dropdown
+          [options]="sortingOptions"
+          [default]="sorting"
+          icon="sorting"
+        ></util-dropdown>
       </div>
       <table class="reservations-table">
         <tbody>
@@ -54,7 +44,7 @@ import { ReservationService } from '../services/reservation.service';
             </td>
             <td>
               <div class="favorite favorite-{{ reservation.favorite ? 'enabled' : 'disabled' }}">
-                <span class="favorite-text">Add Favorites</span>
+                <span class="favorite-text hide-on-mobile">Add Favorites</span>
                 <span class="favorite-icon"></span>
               </div>
             </td>
@@ -83,6 +73,9 @@ import { ReservationService } from '../services/reservation.service';
       .container {
         background: white;
         padding: 15px;
+      }
+      .sorting-dropdown {
+        padding-bottom: 10px;
       }
       .reservations-table {
         width: 100%;
