@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
+import { CONTACTS } from '../mock/mock-contact';
+import { CONTACT_TYPES } from '../mock/mock-contact-type';
 import { RESERVATIONS } from '../mock/mock-reservations';
-import { ReservationListItem } from '../models/reservation-list-item';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +10,8 @@ import { ReservationListItem } from '../models/reservation-list-item';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     return {
+      contact: CONTACTS,
+      'contact-type': CONTACT_TYPES,
       reservations: RESERVATIONS,
     };
   }
@@ -18,9 +21,7 @@ export class InMemoryDataService implements InMemoryDbService {
   // the method below returns the initial number (11).
   // if the reservations array is not empty, the method below returns the highest
   // reservation id + 1.
-  genId(reservations: ReservationListItem[]): number {
-    return reservations.length > 0
-      ? Math.max(...reservations.map(reservation => reservation.id)) + 1
-      : 11;
+  genId(array: { id: number }[]): number {
+    return array.length > 0 ? Math.max(...array.map(element => element.id)) + 1 : 11;
   }
 }

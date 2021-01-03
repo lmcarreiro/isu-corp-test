@@ -4,6 +4,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { ReservationListItem } from '../models/reservation-list-item';
+import { Reservation } from '../models/reservation';
 
 @Injectable({
   providedIn: 'root',
@@ -18,11 +19,11 @@ export class ReservationService {
   constructor(private http: HttpClient, private messageService: MessageService) {}
 
   // TODO: replace the model to get detailed reservation and contact info
-  getReservationById(id: number): Observable<ReservationListItem | undefined> {
+  getReservationById(id: number): Observable<Reservation | undefined> {
     // TODO: send the message _after_ fetching the reservation
-    return this.http.get<ReservationListItem>(`${this.reservationsUrl}/${id}`).pipe(
+    return this.http.get<Reservation>(`${this.reservationsUrl}/${id}`).pipe(
       tap(_ => this.log(`fetched reservation id=${id}`)),
-      catchError(this.handleError<ReservationListItem>(`getReservationById id=${id}`))
+      catchError(this.handleError<Reservation>(`getReservationById id=${id}`))
     );
   }
 
@@ -35,7 +36,7 @@ export class ReservationService {
   }
 
   // TODO: replace the model to get detailed reservation and contact info
-  updateReservation(reservation: ReservationListItem): Observable<void> {
+  updateReservation(reservation: Reservation): Observable<void> {
     return this.http.put(this.reservationsUrl, reservation, this.httpOptions).pipe(
       tap(_ => this.log(`updated reservation id=${reservation.id}`)),
       catchError(this.handleError<any>('updateReservation'))
