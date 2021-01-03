@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { RatingModule } from 'ng-starrating';
@@ -15,6 +16,7 @@ import { MessagesComponent } from './components/messages.component';
 import { HeaderComponent } from './components/header.component';
 import { DropdownComponent } from './components/dropdown.component';
 import { InputComponent } from './components/input.component';
+import { RichTextareaComponent } from './components/rich-textarea.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { InputComponent } from './components/input.component';
     HeaderComponent,
     DropdownComponent,
     InputComponent,
+    RichTextareaComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +37,7 @@ import { InputComponent } from './components/input.component';
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     NgSelectModule,
     RatingModule,
+    CKEditorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
