@@ -40,17 +40,39 @@ import { ReservationService } from '../services/reservation.service';
               </div>
             </td>
             <td>
-              {{ reservation.ranking }}
+              <div style="font-size: 0.9em;">Ranking</div>
+              <div>
+                <star-rating
+                  [value]="reservation.ranking"
+                  [totalstars]="5"
+                  [readonly]="true"
+                  checkedcolor="#f0d20f"
+                  uncheckedcolor="grey"
+                  size="18px"
+                ></star-rating>
+              </div>
             </td>
             <td>
               {{ reservation.favorite }}
             </td>
             <td>
-              <button routerLink="/reservation/{{ reservation.id }}" class="secondary">Edit</button>
+              <button routerLink="/reservation/{{ reservation.id }}" class="btn secondary">
+                Edit
+              </button>
             </td>
           </tr>
         </tbody>
       </table>
+      <div class="pager">
+        <button class="btn-pager">&lt;</button>
+        <button class="btn-pager">1</button>
+        <button class="btn-pager selected">2</button>
+        <button class="btn-pager">3</button>
+        <button class="btn-pager">4</button>
+        ...
+        <button class="btn-pager">50</button>
+        <button class="btn-pager">&gt;</button>
+      </div>
     </div>
   `,
   styles: [
@@ -85,6 +107,18 @@ import { ReservationService } from '../services/reservation.service';
       .date {
         color: grey;
         font-size: 0.8em;
+      }
+
+      .btn-pager {
+        margin: 0px 1px;
+        border: 1px solid grey;
+        border-radius: 3px;
+        outline: none;
+        cursor: pointer;
+      }
+      .btn-pager.selected {
+        color: white;
+        background-color: grey;
       }
     `,
   ],

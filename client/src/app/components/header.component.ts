@@ -22,7 +22,7 @@ import { AppService, HeaderData } from '../app.service';
           {{ headerData?.description }}
         </div>
         <div class="nav-button">
-          <button routerLink="{{ headerData?.navigationTarget }}" class="secondary">
+          <button routerLink="{{ headerData?.navigationTarget }}" class="btn secondary">
             {{ headerData?.navigationLabel }}
           </button>
         </div>
@@ -36,7 +36,7 @@ import { AppService, HeaderData } from '../app.service';
         color: white;
       }
       .header-content {
-        max-width: 1200px;
+        max-width: 1024px;
         margin: 0px auto;
         font-size: 1.5em;
         padding: 50px 0px;
@@ -59,7 +59,7 @@ import { AppService, HeaderData } from '../app.service';
         color: grey;
       }
       .title-content {
-        max-width: 1200px;
+        max-width: 1024px;
         margin: 0px auto;
         display: flex;
         align-items: center;

@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { RatingModule } from 'ng-starrating';
 import { InMemoryDataService } from './services/in-memory-data.service';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,6 +29,7 @@ import { HeaderComponent } from './components/header.component';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     NgSelectModule,
+    RatingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

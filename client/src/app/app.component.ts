@@ -13,7 +13,7 @@ import { Component } from '@angular/core';
     `
       .content {
         padding-top: 20px;
-        max-width: 1200px;
+        max-width: 1024px;
         margin: 0px auto;
       }
     `,

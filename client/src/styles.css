@@ -7,7 +7,7 @@ body {
   background-color: #eee;
 }
 
-button {
+button.btn {
   white-space: nowrap;
   text-transform: uppercase;
   padding: 10px 20px;
