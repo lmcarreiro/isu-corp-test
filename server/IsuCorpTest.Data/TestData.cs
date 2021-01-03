@@ -20,6 +20,8 @@ namespace IsuCorpTest.Data
         public void InsertData()
         {
             // Creates the database if not exists
+            // TODO: on a real production app I would certainly not use this to create the database.
+            // Instead I would use migrations, which is the recommended way.
             context.Database.EnsureCreated();
 
             ContactType[] contactTypes = new[]
