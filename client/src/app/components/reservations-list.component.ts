@@ -53,7 +53,10 @@ import { ReservationService } from '../services/reservation.service';
               </div>
             </td>
             <td>
-              {{ reservation.favorite }}
+              <div class="favorite favorite-{{ reservation.favorite ? 'enabled' : 'disabled' }}">
+                <span class="favorite-text">Add Favorites</span>
+                <span class="favorite-icon"></span>
+              </div>
             </td>
             <td>
               <button routerLink="/reservation/{{ reservation.id }}" class="btn secondary">
@@ -119,6 +122,33 @@ import { ReservationService } from '../services/reservation.service';
       .btn-pager.selected {
         color: white;
         background-color: grey;
+      }
+
+      .favorite {
+        display: flex;
+        cursor: pointer;
+      }
+      .favorite-enabled {
+      }
+      .favorite-disabled {
+        color: #aaa;
+      }
+      .favorite-text {
+        display: flex;
+        align-items: center;
+        height: 28px;
+        margin-right: 10px;
+      }
+      .favorite-icon {
+        display: inline-block;
+        width: 28px;
+        height: 28px;
+      }
+      .favorite-enabled .favorite-icon {
+        background-image: url(../../assets/icon-heart-enabled.jpg);
+      }
+      .favorite-disabled .favorite-icon {
+        background-image: url(../../assets/icon-heart-disabled.jpg);
       }
     `,
   ],
