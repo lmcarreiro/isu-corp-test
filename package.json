@@ -1,0 +1,12 @@
+{
+  "name": "@isu-corp-test/root",
+  "version": "1.0.0",
+  "private": true,
+  "repository": "git@github.com:lmcarreiro/isu-corp-test.git",
+  "author": "Leonardo Carreiro <leonardo.mcarreiro@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start:client": "cd client && yarn start",
+    "start:server": "cd server && dotnet run --project IsuCorpTest.Web"
+  }
+}

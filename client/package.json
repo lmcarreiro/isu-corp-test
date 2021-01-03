@@ -1,5 +1,5 @@
 {
-  "name": "isu-corp-test",
+  "name": "@isu-corp-test/client",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
