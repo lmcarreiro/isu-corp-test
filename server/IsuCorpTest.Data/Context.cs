@@ -26,15 +26,15 @@ namespace IsuCorpTest.Data
             modelBuilder.Entity<ContactType>(entity =>
             {
                 entity.HasKey(e => e.Id);
-                entity.Property(e => e.Name).IsRequired();
+                entity.Property(e => e.Name).IsRequired().HasMaxLength(32);
             });
 
             modelBuilder.Entity<Contact>(entity =>
             {
                 entity.HasKey(e => e.Id);
-                entity.Property(e => e.Name).IsRequired();
-                entity.Property(e => e.Phone).IsRequired();
-                entity.Property(e => e.BirthDate).IsRequired();
+                entity.Property(e => e.Name).IsRequired().HasMaxLength(64);
+                entity.Property(e => e.Phone).IsRequired().HasMaxLength(24);
+                entity.Property(e => e.BirthDate).IsRequired().HasColumnType("date");
 
                 entity.HasOne(e => e.Type).WithMany()
                     .IsRequired()
@@ -45,8 +45,9 @@ namespace IsuCorpTest.Data
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Description).IsRequired();
+                entity.Property(e => e.DateTime).IsRequired();
                 entity.Property(e => e.Favorite).IsRequired();
-                entity.Property(e => e.Ranking);
+                entity.Property(e => e.Ranking).IsRequired(false).HasColumnType("tinyint");
 
                 entity.HasOne(e => e.Contact).WithMany(c => c.Reservations)
                     .IsRequired()

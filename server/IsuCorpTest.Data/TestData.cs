@@ -43,14 +43,14 @@ namespace IsuCorpTest.Data
 
             Reservation[] reservations = new[]
             {
-                new Reservation { Contact = contacts[0], Favorite = true , Ranking = 4   , Description = "Test number <b>1</b>" },
-                new Reservation { Contact = contacts[1], Favorite = false, Ranking = 3   , Description = "Test number <b>2</b>" },
-                new Reservation { Contact = contacts[2], Favorite = false, Ranking = 2   , Description = "Test number <b>3</b>" },
-                new Reservation { Contact = contacts[3], Favorite = false, Ranking = 2   , Description = "Test number <b>4</b>" },
-                new Reservation { Contact = contacts[4], Favorite = true , Ranking = 2   , Description = "Test number <b>5</b>" },
-                new Reservation { Contact = contacts[5], Favorite = false, Ranking = 2   , Description = "Test number <b>6</b>" },
-                new Reservation { Contact = contacts[3], Favorite = true , Ranking = 1   , Description = "Test number <b>7</b>" },
-                new Reservation { Contact = contacts[4], Favorite = false, Ranking = null, Description = "Test number <b>8</b>" },
+                new Reservation { Contact = contacts[0], DateTime = new DateTime(2020, 5, 17, 21, 0, 0), Favorite = true , Ranking = 4   , Description = "Test number <b>1</b>" },
+                new Reservation { Contact = contacts[1], DateTime = new DateTime(2020, 5, 18, 20, 0, 0), Favorite = false, Ranking = 3   , Description = "Test number <b>2</b>" },
+                new Reservation { Contact = contacts[2], DateTime = new DateTime(2020, 5, 20, 19, 0, 0), Favorite = false, Ranking = 2   , Description = "Test number <b>3</b>" },
+                new Reservation { Contact = contacts[3], DateTime = new DateTime(2020, 5, 21, 20, 0, 0), Favorite = false, Ranking = 2   , Description = "Test number <b>4</b>" },
+                new Reservation { Contact = contacts[4], DateTime = new DateTime(2020, 5, 17, 21, 0, 0), Favorite = true , Ranking = 2   , Description = "Test number <b>5</b>" },
+                new Reservation { Contact = contacts[5], DateTime = new DateTime(2020, 5, 23, 20, 0, 0), Favorite = false, Ranking = 2   , Description = "Test number <b>6</b>" },
+                new Reservation { Contact = contacts[3], DateTime = new DateTime(2020, 5, 24, 21, 0, 0), Favorite = true , Ranking = 1   , Description = "Test number <b>7</b>" },
+                new Reservation { Contact = contacts[4], DateTime = new DateTime(2020, 5, 25, 20, 0, 0), Favorite = false, Ranking = null, Description = "Test number <b>8</b>" },
             };
             context.Reservation.AddRange(reservations);
 
