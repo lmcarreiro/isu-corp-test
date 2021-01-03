@@ -9,29 +9,39 @@ import { AppService } from '../app.service';
 @Component({
   selector: 'app-reservation-detail',
   template: `
-    <h2>{{ reservation.name | uppercase }} Details</h2>
     <div><span>id: </span>{{ reservation.id }}</div>
-    <div><span>name: </span>{{ reservation.name }}</div>
-    <div>
-      <label>name:</label>
-      <input [(ngModel)]="reservation.name" placeholder="name" />
+    <div class="contact-info">
+      <util-input [(value)]="reservation.contact.name" icon="users"></util-input>
+      <util-input [(value)]="reservation.contact.type" icon="globe"></util-input>
     </div>
-    <button (click)="save()">save</button>
-    <button (click)="goBack()">go back</button>
+    <div class="buttons">
+      <button (click)="save()" class="btn primary">save</button>
+    </div>
   `,
-  styles: [],
+  styles: [
+    `
+      .contact-info {
+        background-color: white;
+        padding: 10px;
+      }
+    `,
+  ],
 })
 export class ReservationDetailComponent implements OnInit {
   // TODO: use another model for this
-  emptyReservation: ReservationListItem = {
+  emptyReservation: Reservation = {
     id: 0,
-    name: '',
-    date: '',
-    favorite: false,
-    ranking: 0,
+    description: '',
+    contact: {
+      id: 0,
+      name: '',
+      type: '',
+      phone: '',
+      birthDate: '',
+    },
   };
 
-  reservation: ReservationListItem = this.emptyReservation;
+  reservation = this.emptyReservation;
 
   constructor(
     private appService: AppService,
@@ -60,7 +70,7 @@ export class ReservationDetailComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.reservationService.getReservationById(parseInt(id)).subscribe(reservation => {
-        this.reservation = reservation || this.emptyReservation;
+        //this.reservation = reservation || this.emptyReservation;
       });
     }
   }

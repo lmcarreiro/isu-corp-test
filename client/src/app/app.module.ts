@@ -14,6 +14,7 @@ import { ReservationDetailComponent } from './components/reservation-detail.comp
 import { MessagesComponent } from './components/messages.component';
 import { HeaderComponent } from './components/header.component';
 import { DropdownComponent } from './components/dropdown.component';
+import { InputComponent } from './components/input.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { DropdownComponent } from './components/dropdown.component';
     MessagesComponent,
     HeaderComponent,
     DropdownComponent,
+    InputComponent,
   ],
   imports: [
     BrowserModule,
