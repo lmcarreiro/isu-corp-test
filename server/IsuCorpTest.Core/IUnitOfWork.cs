@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace IsuCorpTest.Core
@@ -13,6 +14,6 @@ namespace IsuCorpTest.Core
         IContactRepository Contact { get; }
         IReservationRepository Reservation { get; }
 
-        Task Save();
+        Task Save(CancellationToken cancellationToken);
     }
 }

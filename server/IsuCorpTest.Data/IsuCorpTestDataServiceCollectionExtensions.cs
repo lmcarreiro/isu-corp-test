@@ -1,4 +1,5 @@
-﻿using IsuCorpTest.Data;
+﻿using IsuCorpTest.Core;
+using IsuCorpTest.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -11,7 +12,8 @@ namespace Microsoft.Extensions.DependencyInjection
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContextPool<DataContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-            services.AddTransient<TestData>();
+            services.AddTransient<TestData>(); // TODO: remove this line
+            services.AddTransient<IUnitOfWork, EFCoreUnitOfWork>();
 
             // TODO: add services
             return services;
