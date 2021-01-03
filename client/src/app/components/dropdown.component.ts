@@ -1,8 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-
-const icons = {
-  sorting: '../../assets/icon-sorting.jpg',
-};
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { icons } from '../config';
 
 @Component({
   selector: 'util-dropdown',
@@ -13,7 +10,8 @@ const icons = {
       [clearable]="false"
       bindLabel="name"
       bindValue="id"
-      [(ngModel)]="default"
+      [ngModel]="selected"
+      (ngModelChange)="selectedChange.emit($event)"
     >
       <ng-template ng-label-tmp let-item="item">
         <div style="display: flex; align-items: center;">
@@ -26,18 +24,14 @@ const icons = {
   styles: [],
 })
 export class DropdownComponent implements OnInit {
-  @Input('default')
-  default!: string;
+  @Input() options!: { id: string; name: string }[];
 
-  @Input('options')
-  options!: { id: string; name: string }[];
+  @Input() icon!: keyof typeof icons;
 
-  @Input('icon')
-  icon!: keyof typeof icons;
+  @Input() selected!: string;
+  @Output() selectedChange: EventEmitter<string> = new EventEmitter<string>();
 
   icons = icons;
-
-  // TODO: add event for changing the sorting option
 
   constructor() {}
 

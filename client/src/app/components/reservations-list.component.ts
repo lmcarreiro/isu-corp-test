@@ -10,7 +10,7 @@ import { ReservationService } from '../services/reservation.service';
       <div class="sorting-dropdown full-width-on-mobile" style="width: 260px;">
         <util-dropdown
           [options]="sortingOptions"
-          [default]="sorting"
+          [(selected)]="sorting"
           icon="sorting"
         ></util-dropdown>
       </div>
