@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IsuCorpTest.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +27,7 @@ namespace IsuCorpTest.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddIsuCorpTestCore();
-            services.AddIsuCorpTestData();
+            services.AddIsuCorpTestData(Configuration);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -35,7 +36,7 @@ namespace IsuCorpTest.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TestData testData)
         {
             if (env.IsDevelopment())
             {
@@ -52,6 +53,9 @@ namespace IsuCorpTest.Web
             {
                 endpoints.MapControllers();
             });
+
+            testData.InsertData();
+            testData.PrintData();
         }
     }
 }
