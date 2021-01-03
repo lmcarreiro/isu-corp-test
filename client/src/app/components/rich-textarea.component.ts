@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-const ckeditor = require('@ckeditor/ckeditor5-build-classic');
+import * as ckeditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'util-rich-textarea',
