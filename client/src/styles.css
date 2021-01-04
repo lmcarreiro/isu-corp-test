@@ -34,6 +34,10 @@ button.secondary {
   min-height: 44px;
 }
 
+.ck-editor__editable_inline {
+  min-height: 200px;
+}
+
 .padding-top-10 {
   padding-top: 10px;
 }
