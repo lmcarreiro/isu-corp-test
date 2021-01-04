@@ -33,6 +33,15 @@ namespace IsuCorpTest.Web
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "IsuCorpTest.Web", Version = "v1" });
             });
+
+            services.AddCors(o => o.AddPolicy("AllowAny", builder =>
+            {
+                builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +52,7 @@ namespace IsuCorpTest.Web
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "IsuCorpTest.Web v1"));
+                app.UseCors("AllowAny");
             }
 
             app.UseRouting();
