@@ -4,9 +4,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { RatingModule } from 'ng-starrating';
-import { InMemoryDataService } from './services/in-memory-data.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,7 +32,6 @@ import { RichTextareaComponent } from './components/rich-textarea.component';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     NgSelectModule,
     RatingModule,
     CKEditorModule,
