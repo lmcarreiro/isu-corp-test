@@ -9,25 +9,48 @@ import { AppService } from '../app.service';
 @Component({
   selector: 'app-reservation-detail',
   template: `
-    <div><span>id: </span>{{ reservation.id }}</div>
-    <div class="contact-info">
-      <util-input [(value)]="reservation.contact.name" icon="users"></util-input>
-      <util-dropdown-contact-type
-        [(selected)]="reservation.contact.type"
-      ></util-dropdown-contact-type>
-    </div>
-    <div>
-      <util-rich-textarea></util-rich-textarea>
-    </div>
-    <div class="buttons">
-      <button (click)="save()" class="btn primary">save</button>
+    <div class="main">
+      <div class="contact-form">
+        <div class="contact-form-field full-width-on-mobile">
+          <util-input [(value)]="reservation.contact.name" icon="users"></util-input>
+        </div>
+        <div class="contact-form-field full-width-on-mobile">
+          <util-dropdown-contact-type
+            [(selected)]="reservation.contact.type"
+          ></util-dropdown-contact-type>
+        </div>
+        <div class="contact-form-field full-width-on-mobile">
+          <util-input [(value)]="reservation.contact.phone" icon="phone"></util-input>
+        </div>
+        <div class="contact-form-field full-width-on-mobile">
+          <util-input [(value)]="reservation.contact.birthDate" icon="calendar"></util-input>
+        </div>
+      </div>
+      <div class="padding-top-20 hide-on-mobile"></div>
+      <div>
+        <util-rich-textarea></util-rich-textarea>
+      </div>
+      <div class="buttons">
+        <button (click)="save()" class="btn primary">save</button>
+      </div>
     </div>
   `,
   styles: [
     `
-      .contact-info {
+      .main {
+        padding: 10px;
+      }
+
+      .contact-form {
         background-color: white;
         padding: 10px;
+      }
+
+      .contact-form-field {
+        display: inline-block;
+        vertical-align: middle;
+        padding: 3px;
+        width: calc(25% - 6px);
       }
     `,
   ],
