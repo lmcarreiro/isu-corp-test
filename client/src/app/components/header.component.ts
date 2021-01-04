@@ -80,6 +80,9 @@ import { AppService, HeaderData } from '../app.service';
       }
       .slogan {
         display: inline-block;
+        padding-top: 12px;
+        font-size: 1em;
+        line-height: 15px;
       }
 
       .title {
