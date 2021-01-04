@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace IsuCorpTest.Data.Repository
 {
-    public class EFCoreRepository<TConcret, TInterface> : IRepository<TInterface>
+    public abstract class EFCoreRepository<TConcret, TInterface> : IRepository<TInterface>
         where TConcret : class, TInterface
         where TInterface : notnull, IEntity
     {

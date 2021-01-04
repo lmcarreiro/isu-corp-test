@@ -8,18 +8,22 @@ using System.Threading.Tasks;
 
 namespace IsuCorpTest.Data.Models
 {
-    public class ContactType : IContactType
+    public abstract class EFCoreEntity : IEntity
+    {
+        public int Id { get; }
+    }
+
+    public class ContactType : EFCoreEntity, IContactType
     {
         public ContactType(string name)
         {
             Name = name;
         }
 
-        public int Id { get; set; }
         public string Name { get; set; }
     }
 
-    public class Contact : IContact
+    public class Contact : EFCoreEntity, IContact
     {
         public Contact(string name, string phone)
         {
@@ -27,7 +31,6 @@ namespace IsuCorpTest.Data.Models
             Phone = phone;
         }
 
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
         public DateTime BirthDate { get; set; }
@@ -50,14 +53,13 @@ namespace IsuCorpTest.Data.Models
         ICollection<IReservation> IContact.Reservations => new ProxyCollection<Reservation, IReservation>(Reservations);
     }
 
-    public class Reservation : IReservation
+    public class Reservation : EFCoreEntity, IReservation
     {
         public Reservation(string description)
         {
             Description = description;
         }
 
-        public int Id { get; set; }
         public string Description { get; set; }
         public DateTime DateTime { get; set; }
         public bool Favorite { get; set; }

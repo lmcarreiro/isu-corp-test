@@ -8,7 +8,7 @@ namespace IsuCorpTest.Core.Entity
 {
     public interface IEntity
     {
-        int Id { get; set; }
+        int Id { get; }
     }
 
     public interface IContactType : IEntity
