@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace IsuCorpTest.Data.Repository
 {
     public abstract class EFCoreRepository<TConcret, TInterface> : IRepository<TInterface>
-        where TConcret : class, TInterface
+        where TConcret : class, TInterface, new()
         where TInterface : notnull, IEntity
     {
         protected DataContext Context { get; }
@@ -24,6 +24,8 @@ namespace IsuCorpTest.Data.Repository
             Context = context;
             Set = setSelector(context);
         }
+
+        public TInterface CreateInstance() => new TConcret();
 
         public virtual Task Delete(TInterface entity)
         {
@@ -43,9 +45,15 @@ namespace IsuCorpTest.Data.Repository
             return Task.CompletedTask;
         }
 
-        public virtual async Task<TInterface?> GetById(int id)
+        public virtual async Task<TInterface> GetById(int id)
         {
             var entity = await Set.SingleAsync(e => e.Id == id);
+            return entity;
+        }
+
+        public virtual async Task<TInterface?> TryGetById(int id)
+        {
+            var entity = await Set.SingleOrDefaultAsync(e => e.Id == id);
             return entity;
         }
 

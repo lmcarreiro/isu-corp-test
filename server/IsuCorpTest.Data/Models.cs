@@ -15,24 +15,13 @@ namespace IsuCorpTest.Data.Models
 
     public class ContactType : EFCoreEntity, IContactType
     {
-        public ContactType(string name)
-        {
-            Name = name;
-        }
-
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
     }
 
     public class Contact : EFCoreEntity, IContact
     {
-        public Contact(string name, string phone)
-        {
-            Name = name;
-            Phone = phone;
-        }
-
-        public string Name { get; set; }
-        public string Phone { get; set; }
+        public string Name { get; set; } = "";
+        public string Phone { get; set; } = "";
         public DateTime BirthDate { get; set; }
 
         private ContactType? _type;
@@ -42,12 +31,7 @@ namespace IsuCorpTest.Data.Models
             set => _type = value;
         }
 
-        private ICollection<Reservation>? _reservations;
-        public virtual ICollection<Reservation> Reservations
-        {
-            get => _reservations ?? throw new InvalidOperationException($"Uninitialized property: {nameof(Reservations)}");
-            set => _reservations = value;
-        }
+        public virtual ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
 
         IContactType IContact.Type { get => Type; set => Type = (ContactType)value; }
         ICollection<IReservation> IContact.Reservations => new ProxyCollection<Reservation, IReservation>(Reservations);
@@ -55,12 +39,7 @@ namespace IsuCorpTest.Data.Models
 
     public class Reservation : EFCoreEntity, IReservation
     {
-        public Reservation(string description)
-        {
-            Description = description;
-        }
-
-        public string Description { get; set; }
+        public string Description { get; set; } = "";
         public DateTime DateTime { get; set; }
         public bool Favorite { get; set; }
         public int? Ranking { get; set; }

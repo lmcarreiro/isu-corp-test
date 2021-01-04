@@ -10,7 +10,9 @@ namespace IsuCorpTest.Core.Repository
 {
     public interface IRepository<T> where T : notnull, IEntity
     {
-        Task<T?> GetById(int id);
+        T CreateInstance();
+        Task<T> GetById(int id);
+        Task<T?> TryGetById(int id);
         Task<IList<T>> ListAll();
         Task Insert(T entity);
         Task Update(T entity);
