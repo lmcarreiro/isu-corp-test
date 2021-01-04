@@ -26,6 +26,10 @@ button.secondary {
   background-color: grey;
 }
 
+.ng-select.custom .ng-value-container {
+  padding-left: 0 !important;
+}
+
 .padding-top-10 {
   padding-top: 10px;
 }

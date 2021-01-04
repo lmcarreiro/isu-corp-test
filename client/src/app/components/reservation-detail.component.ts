@@ -12,7 +12,9 @@ import { AppService } from '../app.service';
     <div><span>id: </span>{{ reservation.id }}</div>
     <div class="contact-info">
       <util-input [(value)]="reservation.contact.name" icon="users"></util-input>
-      <util-input [(value)]="reservation.contact.type" icon="globe"></util-input>
+      <util-dropdown-contact-type
+        [(selected)]="reservation.contact.type"
+      ></util-dropdown-contact-type>
     </div>
     <div>
       <util-rich-textarea></util-rich-textarea>
