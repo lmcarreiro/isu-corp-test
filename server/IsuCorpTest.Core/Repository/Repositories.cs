@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace IsuCorpTest.Core.Repository
 {
-    public interface IRepository<T> where T : IEntity
+    public interface IRepository<T> where T : notnull, IEntity
     {
-        Task<T> GetById(int id);
+        Task<T?> GetById(int id);
         Task<IList<T>> ListAll();
         Task Insert(T entity);
         Task Update(T entity);

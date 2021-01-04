@@ -19,14 +19,14 @@ namespace IsuCorpTest.Data
             Context = context;
         }
 
-        private IContactTypeRepository _contactType;
-        public IContactTypeRepository ContactType => _contactType = _contactType ?? new ContactTypeRepository(Context);
+        private IContactTypeRepository? _contactType;
+        public IContactTypeRepository ContactType => _contactType ??= new ContactTypeRepository(Context);
 
-        private IContactRepository _contact;
-        public IContactRepository Contact => _contact = _contact ?? new ContactRepository(Context);
+        private IContactRepository? _contact;
+        public IContactRepository Contact => _contact ??= new ContactRepository(Context);
 
-        private IReservationRepository _reservation;
-        public IReservationRepository Reservation => _reservation = _reservation ?? new ReservationRepository(Context);
+        private IReservationRepository? _reservation;
+        public IReservationRepository Reservation => _reservation ??= new ReservationRepository(Context);
 
         public async Task Save(CancellationToken cancellationToken)
         {

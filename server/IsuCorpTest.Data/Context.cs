@@ -10,11 +10,11 @@ namespace IsuCorpTest.Data
 {
     public class DataContext : DbContext
     {
-        public DbSet<ContactType> ContactType { get; set; }
+        public DbSet<ContactType> ContactType { get; set; } = null!;
 
-        public DbSet<Contact> Contact { get; set; }
+        public DbSet<Contact> Contact { get; set; } = null!;
 
-        public DbSet<Reservation> Reservation { get; set; }
+        public DbSet<Reservation> Reservation { get; set; } = null!;
 
         public DataContext(DbContextOptions<DataContext> options)
             : base(options) { }

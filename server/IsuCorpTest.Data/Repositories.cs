@@ -13,7 +13,7 @@ namespace IsuCorpTest.Data.Repository
 {
     public class EFCoreRepository<TConcret, TInterface> : IRepository<TInterface>
         where TConcret : class, TInterface
-        where TInterface : IEntity
+        where TInterface : notnull, IEntity
     {
         protected DataContext Context { get; }
         protected DbSet<TConcret> Set { get; }
@@ -24,31 +24,31 @@ namespace IsuCorpTest.Data.Repository
             Set = setSelector(context);
         }
 
-        Task IRepository<TInterface>.Delete(TInterface entity)
+        public virtual Task Delete(TInterface entity)
         {
             Set.Remove((TConcret)entity);
             return Task.CompletedTask;
         }
 
-        Task IRepository<TInterface>.Insert(TInterface entity)
+        public virtual Task Insert(TInterface entity)
         {
             Set.Add((TConcret)entity);
             return Task.CompletedTask;
         }
 
-        Task IRepository<TInterface>.Update(TInterface entity)
+        public virtual Task Update(TInterface entity)
         {
             Set.Update((TConcret)entity);
             return Task.CompletedTask;
         }
 
-        async Task<TInterface> IRepository<TInterface>.GetById(int id)
+        public virtual async Task<TInterface?> GetById(int id)
         {
             var entity = await Set.FindAsync(id);
             return entity;
         }
 
-        async Task<IList<TInterface>> IRepository<TInterface>.ListAll()
+        public virtual async Task<IList<TInterface>> ListAll()
         {
             var list = await Set.ToListAsync<TInterface>();
             return list;
