@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 
 import { ReservationService } from '../services/reservation.service';
 import { AppService } from '../app.service';
+import { ReservationModel } from '../models/reservation.model';
 
 @Component({
   selector: 'app-reservation-detail',
@@ -60,8 +61,7 @@ import { AppService } from '../app.service';
   ],
 })
 export class ReservationDetailComponent implements OnInit {
-  // TODO: use another model for this
-  emptyReservation = {
+  emptyReservation: ReservationModel = {
     id: 0,
     description: '',
     contact: {

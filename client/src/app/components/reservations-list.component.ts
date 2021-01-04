@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../app.service';
-import { PagedResult, emptyPagedResult } from '../models/paged-result';
-import { ReservationListItem } from '../models/reservation-list-item';
+import { PagedResultModel, emptyPagedResult } from '../models/paged-result.model';
+import { ReservationListItemModel } from '../models/reservation-list-item.model';
 import { ReservationService } from '../services/reservation.service';
 import { PAGE_MARKER } from './util/paginator.component';
 
@@ -130,7 +130,7 @@ import { PAGE_MARKER } from './util/paginator.component';
 })
 export class ReservationsListComponent implements OnInit {
   routerLink = `/reservations-list/${PAGE_MARKER}`;
-  reservations: PagedResult<ReservationListItem> = emptyPagedResult;
+  reservations: PagedResultModel<ReservationListItemModel> = emptyPagedResult;
 
   sorting = 'date-asc';
 

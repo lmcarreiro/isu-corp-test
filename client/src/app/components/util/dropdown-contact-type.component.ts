@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ContactType } from 'src/app/models/contact-type';
+import { ContactTypeModel } from 'src/app/models/contact-type.model';
 import { ContactTypeService } from 'src/app/services/contact-type.service';
 
 @Component({

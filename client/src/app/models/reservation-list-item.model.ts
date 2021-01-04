@@ -1,4 +1,4 @@
-export interface ReservationListItem {
+export interface ReservationListItemModel {
   id: number;
   contactName: string;
   reservationDate: string;

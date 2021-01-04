@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PagedResult } from '../../models/paged-result';
+import { PagedResultModel } from '../../models/paged-result.model';
 
 export const PAGE_MARKER = ':page';
 
@@ -48,7 +48,7 @@ export const PAGE_MARKER = ':page';
   ],
 })
 export class PaginatorComponent implements OnInit {
-  @Input() results!: PagedResult<any>;
+  @Input() results!: PagedResultModel<any>;
   @Input() targetLink!: string;
 
   get pages(): number[] {

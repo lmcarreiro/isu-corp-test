@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { ContactType } from '../models/contact-type';
+import { ContactTypeModel } from '../models/contact-type.model';
 import { BaseService } from './base.service';
 import { MessageService } from './message.service';
 
@@ -14,11 +14,11 @@ export class ContactTypeService extends BaseService {
     super('ContactType', http, messageService);
   }
 
-  getContactTypes(): Observable<ContactType[]> {
+  getContactTypes(): Observable<ContactTypeModel[]> {
     // TODO: send the message _after_ fetching the reservations
-    return this.http.get<ContactType[]>(this.baseUrl).pipe(
+    return this.http.get<ContactTypeModel[]>(this.baseUrl).pipe(
       tap(_ => this.log('fetched reservations')),
-      catchError(this.handleError<ContactType[]>('getContactTypes', []))
+      catchError(this.handleError<ContactTypeModel[]>('getContactTypes', []))
     );
   }
 }
