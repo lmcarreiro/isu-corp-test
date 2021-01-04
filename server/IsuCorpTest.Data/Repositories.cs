@@ -1,7 +1,7 @@
 ﻿using IsuCorpTest.Core.Entity;
 using IsuCorpTest.Core.Repository;
 using IsuCorpTest.Core.Util;
-using IsuCorpTest.Data.Models;
+using IsuCorpTest.Data.DataModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections;

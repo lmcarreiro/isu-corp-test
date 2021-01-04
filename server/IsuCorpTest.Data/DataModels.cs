@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IsuCorpTest.Data.Models
+namespace IsuCorpTest.Data.DataModels
 {
     public abstract class EFCoreEntity : IEntity
     {

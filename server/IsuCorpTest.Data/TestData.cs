@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IsuCorpTest.Data.Models;
+using IsuCorpTest.Data.DataModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace IsuCorpTest.Data
