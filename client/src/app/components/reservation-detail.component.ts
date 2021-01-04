@@ -14,6 +14,9 @@ import { AppService } from '../app.service';
       <util-input [(value)]="reservation.contact.name" icon="users"></util-input>
       <util-input [(value)]="reservation.contact.type" icon="globe"></util-input>
     </div>
+    <div>
+      <util-rich-textarea></util-rich-textarea>
+    </div>
     <div class="buttons">
       <button (click)="save()" class="btn primary">save</button>
     </div>
@@ -29,7 +32,7 @@ import { AppService } from '../app.service';
 })
 export class ReservationDetailComponent implements OnInit {
   // TODO: use another model for this
-  emptyReservation: Reservation = {
+  emptyReservation = {
     id: 0,
     description: '',
     contact: {
@@ -76,6 +79,8 @@ export class ReservationDetailComponent implements OnInit {
   }
 
   save(): void {
-    this.reservationService.updateReservation(this.reservation).subscribe(() => this.goBack());
+    this.reservationService
+      .updateReservation(this.reservation as any)
+      .subscribe(() => this.goBack());
   }
 }
