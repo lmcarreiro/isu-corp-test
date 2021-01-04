@@ -4,7 +4,6 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { ReservationListItem } from '../models/reservation-list-item';
-import { Reservation } from '../models/reservation';
 
 @Injectable({
   providedIn: 'root',

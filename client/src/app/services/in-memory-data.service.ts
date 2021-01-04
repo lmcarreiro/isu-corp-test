@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { CONTACTS } from '../mock/mock-contact';
-import { CONTACT_TYPES } from '../mock/mock-contact-type';
 import { RESERVATIONS } from '../mock/mock-reservations';
 
 @Injectable({
@@ -10,8 +8,6 @@ import { RESERVATIONS } from '../mock/mock-reservations';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     return {
-      contact: CONTACTS,
-      'contact-type': CONTACT_TYPES,
       reservations: RESERVATIONS,
     };
   }
