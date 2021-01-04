@@ -56,6 +56,7 @@ namespace IsuCorpTest.Data
                     .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasIndex(e => e.DateTime).IsUnique(false);
+                entity.HasIndex(e => e.Ranking).IsUnique(false);
             });
         }
     }
