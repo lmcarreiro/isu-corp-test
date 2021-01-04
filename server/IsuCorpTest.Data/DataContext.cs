@@ -25,6 +25,8 @@ namespace IsuCorpTest.Data
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Name).IsRequired().HasMaxLength(32);
+
+                entity.HasIndex(e => e.Name).IsUnique();
             });
 
             modelBuilder.Entity<Contact>(entity =>
@@ -37,6 +39,8 @@ namespace IsuCorpTest.Data
                 entity.HasOne(e => e.Type).WithMany()
                     .IsRequired()
                     .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasIndex(e => e.Name).IsUnique();
             });
 
             modelBuilder.Entity<Reservation>(entity =>
@@ -50,6 +54,8 @@ namespace IsuCorpTest.Data
                 entity.HasOne(e => e.Contact).WithMany(c => c.Reservations)
                     .IsRequired()
                     .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasIndex(e => e.DateTime).IsUnique(false);
             });
         }
     }
