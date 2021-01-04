@@ -30,6 +30,10 @@ button.secondary {
   padding-left: 0 !important;
 }
 
+.ng-select.custom .ng-select-container {
+  min-height: 44px;
+}
+
 .padding-top-10 {
   padding-top: 10px;
 }

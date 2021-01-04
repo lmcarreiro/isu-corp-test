@@ -5,8 +5,10 @@ import { icons } from './icons';
   selector: 'util-input',
   template: `
     <div class="container" (click)="input.focus()">
-      <img [src]="icons[icon]" />
-      <input #input [ngModel]="value" (ngModelChange)="valueChange.emit($event)" />
+      <div class="img"><img [src]="icons[icon]" /></div>
+      <div class="input">
+        <input #input [ngModel]="value" (ngModelChange)="valueChange.emit($event)" />
+      </div>
     </div>
   `,
   styles: [
@@ -16,11 +18,20 @@ import { icons } from './icons';
         align-items: center;
         background-color: white;
         border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .container div.img {
+        flex-basis: auto;
+      }
+      .container div.input {
+        flex-grow: 1;
       }
       .container input {
-        flex: 1;
+        width: calc(100% - 10px);
         border: none;
         outline: none;
+        font-size: 1em;
+        font-family: inherit;
       }
     `,
   ],
