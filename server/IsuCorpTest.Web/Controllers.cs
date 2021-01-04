@@ -38,8 +38,8 @@ namespace IsuCorpTest.Web.Controllers
         [HttpPost]
         public async Task<Reservation> Post(Reservation input)
         {
-            var contact = input.Contact.Id.HasValue
-                ? await UnitOfWork.Contact.GetById(input.Contact.Id.Value)
+            var contact = input.Contact.Id > 0
+                ? await UnitOfWork.Contact.GetById(input.Contact.Id)
                 : UnitOfWork.Contact.CreateInstance();
 
             var reservation = UnitOfWork.Reservation.CreateInstance();
@@ -49,6 +49,7 @@ namespace IsuCorpTest.Web.Controllers
             contact.Phone = input.Contact.Phone;
             contact.BirthDate = input.Contact.BirthDate;
 
+            reservation.DateTime = DateTime.Now;
             reservation.Description = input.Description;
             reservation.Contact = contact;
 
@@ -75,7 +76,7 @@ namespace IsuCorpTest.Web.Controllers
     }
 
     public record Reservation(
-        int? Id
+        int Id
         , string Description
         , Contact Contact
     )
@@ -85,7 +86,7 @@ namespace IsuCorpTest.Web.Controllers
     }
 
     public record Contact(
-        int? Id
+        int Id
         , string Name
         , int TypeId
         , string Phone

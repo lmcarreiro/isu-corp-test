@@ -4,7 +4,7 @@ export interface ReservationModel {
   contact: {
     id: number;
     name: string;
-    type: string;
+    typeId: number;
     phone: string;
     birthDate: string;
   };

@@ -15,9 +15,7 @@ import { ReservationModel } from '../models/reservation.model';
           <util-input [(value)]="reservation.contact.name" icon="users"></util-input>
         </div>
         <div class="contact-form-field full-width-on-mobile">
-          <util-dropdown-contact-type
-            [(selected)]="reservation.contact.type"
-          ></util-dropdown-contact-type>
+          <util-dropdown-contact-type [(selected)]="typeId"></util-dropdown-contact-type>
         </div>
         <div class="contact-form-field full-width-on-mobile">
           <util-input [(value)]="reservation.contact.phone" icon="phone"></util-input>
@@ -61,17 +59,26 @@ import { ReservationModel } from '../models/reservation.model';
   ],
 })
 export class ReservationDetailComponent implements OnInit {
-  emptyReservation: ReservationModel = {
-    id: 0,
-    description: '',
-    contact: {
+  get emptyReservation() {
+    return <ReservationModel>{
       id: 0,
-      name: '',
-      type: '',
-      phone: '',
-      birthDate: '',
-    },
-  };
+      description: '',
+      contact: {
+        id: 0,
+        name: '',
+        typeId: 0,
+        phone: '',
+        birthDate: '',
+      },
+    };
+  }
+
+  get typeId(): string {
+    return this.reservation.contact.typeId.toString();
+  }
+  set typeId(value: string) {
+    this.reservation.contact.typeId = parseInt(value);
+  }
 
   reservation = this.emptyReservation;
 
@@ -109,8 +116,6 @@ export class ReservationDetailComponent implements OnInit {
   }
 
   save(): void {
-    this.reservationService
-      .updateReservation(this.reservation as any)
-      .subscribe(() => this.goBack());
+    this.reservationService.createReservation(this.reservation).subscribe(() => this.goBack());
   }
 }

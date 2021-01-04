@@ -6,6 +6,7 @@ import { MessageService } from './message.service';
 import { ReservationListItemModel } from '../models/reservation-list-item.model';
 import { emptyPagedResult, PagedResultModel } from '../models/paged-result.model';
 import { BaseService } from './base.service';
+import { ReservationModel } from '../models/reservation.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,12 +16,11 @@ export class ReservationService extends BaseService {
     super('Reservation', http, messageService);
   }
 
-  // TODO: replace the model to get detailed reservation and contact info
-  getReservationById(id: number): Observable<ReservationListItemModel | undefined> {
+  getReservationById(id: number): Observable<ReservationModel | undefined> {
     // TODO: send the message _after_ fetching the reservation
-    return this.http.get<ReservationListItemModel>(`${this.baseUrl}/${id}`).pipe(
+    return this.http.get<ReservationModel>(`${this.baseUrl}/${id}`).pipe(
       tap(_ => this.log(`fetched reservation id=${id}`)),
-      catchError(this.handleError<ReservationListItemModel>(`getReservationById id=${id}`))
+      catchError(this.handleError<ReservationModel>(`getReservationById id=${id}`))
     );
   }
 
@@ -39,11 +39,10 @@ export class ReservationService extends BaseService {
       );
   }
 
-  // TODO: replace the model to get detailed reservation and contact info
-  updateReservation(reservation: ReservationListItemModel): Observable<void> {
-    return this.http.put(this.baseUrl, reservation, this.httpOptions).pipe(
-      tap(_ => this.log(`updated reservation id=${reservation.id}`)),
-      catchError(this.handleError<any>('updateReservation'))
+  createReservation(reservation: ReservationModel): Observable<void> {
+    return this.http.post(this.baseUrl, reservation, this.httpOptions).pipe(
+      tap(_ => this.log(`created reservation id=${reservation.id}`)),
+      catchError(this.handleError<any>('createReservation'))
     );
   }
 }
