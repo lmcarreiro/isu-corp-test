@@ -31,7 +31,7 @@ import { AppService } from '../app.service';
         <util-rich-textarea></util-rich-textarea>
       </div>
       <div class="buttons">
-        <button (click)="save()" class="btn primary">save</button>
+        <button (click)="save()" class="btn primary full-width-on-mobile">Send</button>
       </div>
     </div>
   `,
@@ -51,6 +51,11 @@ import { AppService } from '../app.service';
         vertical-align: middle;
         padding: 3px;
         width: calc(25% - 6px);
+      }
+
+      .buttons {
+        text-align: right;
+        margin-top: 20px;
       }
     `,
   ],
