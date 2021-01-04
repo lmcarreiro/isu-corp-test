@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { icons } from '../config';
+import { icons } from './icons';
 
 @Component({
   selector: 'util-dropdown',

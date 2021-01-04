@@ -12,10 +12,10 @@ import { ReservationsListComponent } from './components/reservations-list.compon
 import { ReservationDetailComponent } from './components/reservation-detail.component';
 import { MessagesComponent } from './components/messages.component';
 import { HeaderComponent } from './components/header.component';
-import { DropdownComponent } from './components/dropdown.component';
-import { InputComponent } from './components/input.component';
-import { RichTextareaComponent } from './components/rich-textarea.component';
-import { PaginatorComponent } from './components/paginator.component';
+import { DropdownComponent } from './components/util/dropdown.component';
+import { InputComponent } from './components/util/input.component';
+import { RichTextareaComponent } from './components/util/rich-textarea.component';
+import { PaginatorComponent } from './components/util/paginator.component';
 
 @NgModule({
   declarations: [

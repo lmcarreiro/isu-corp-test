@@ -4,7 +4,7 @@ import { AppService } from '../app.service';
 import { PagedResult, emptyPagedResult } from '../models/paged-result';
 import { ReservationListItem } from '../models/reservation-list-item';
 import { ReservationService } from '../services/reservation.service';
-import { PAGE_MARKER } from './paginator.component';
+import { PAGE_MARKER } from './util/paginator.component';
 
 @Component({
   selector: 'app-reservations-list',

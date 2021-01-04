@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PagedResult } from '../models/paged-result';
+import { PagedResult } from '../../models/paged-result';
 
 export const PAGE_MARKER = ':page';
 
