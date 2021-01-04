@@ -25,8 +25,8 @@ import { ReservationService } from '../services/reservation.service';
             </td>
             <td>
               <div>
-                <div class="title">{{ reservation.name }}</div>
-                <div class="date">{{ reservation.date }}</div>
+                <div class="title">{{ reservation.contactName }}</div>
+                <div class="date">{{ reservation.reservationDate }}</div>
               </div>
             </td>
             <td class="hide-on-mobile">

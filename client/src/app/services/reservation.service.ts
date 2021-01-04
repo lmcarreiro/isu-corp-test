@@ -4,12 +4,13 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { ReservationListItem } from '../models/reservation-list-item';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReservationService {
-  private reservationsUrl = 'api/reservations';
+  private reservationsUrl = `${environment.baseUrl}/reservation`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
