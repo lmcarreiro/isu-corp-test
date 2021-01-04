@@ -17,6 +17,7 @@ export class AppService {
 export interface HeaderData {
   title: string;
   description: string;
+  showDescriptionOnMobile: boolean;
   navigationLabel: string;
   navigationTarget: string;
   navigationArrow?: 'left' | 'right';

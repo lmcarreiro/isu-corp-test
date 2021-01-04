@@ -151,11 +151,12 @@ export class ReservationsListComponent implements OnInit {
   ngOnInit(): void {
     this.appService.setHeaderData({
       title: 'Reservations List',
+      showDescriptionOnMobile: false,
       navigationLabel: 'Create reservation',
       navigationTarget: '/reservation',
       navigationArrow: 'right',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     });
 
     const page = parseInt(this.route.snapshot.paramMap.get('page')!) || 1;

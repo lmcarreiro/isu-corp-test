@@ -28,9 +28,12 @@ import { AppService, HeaderData } from '../app.service';
       <div class="desktop-margin hide-on-mobile"></div>
     </div>
     <div class="title">
-      <div *ngIf="headerData" class="title-content">
-        <div class="text">{{ headerData?.title }}</div>
-        <div class="description  hide-on-mobile">
+      <div *ngIf="headerData" class="title-content wrap-on-mobile">
+        <div class="text full-width-on-mobile">{{ headerData?.title }}</div>
+        <div
+          class="description full-width-on-mobile"
+          [class.hide-on-mobile]="!headerData?.showDescriptionOnMobile"
+        >
           {{ headerData?.description }}
         </div>
         <div class="nav-button  hide-on-mobile">
@@ -86,6 +89,7 @@ import { AppService, HeaderData } from '../app.service';
       .title-content {
         max-width: 1024px;
         margin: 0px auto;
+        padding: 10px 0px;
         display: flex;
         align-items: center;
       }
