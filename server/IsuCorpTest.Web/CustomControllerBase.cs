@@ -9,6 +9,8 @@ namespace IsuCorpTest.Web
 {
     public abstract class CustomControllerBase : ControllerBase
     {
+        protected const int DefaultPageSize = 10;
+
         protected IUnitOfWork UnitOfWork { get; }
 
         public CustomControllerBase(IUnitOfWork unitOfWork)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using IsuCorpTest.Core;
+using IsuCorpTest.Core.Util;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -15,18 +16,17 @@ namespace IsuCorpTest.Web.Controllers
         public ReservationController(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
         [HttpGet]
-        public async Task<ReservationListItem[]> Get()
+        public async Task<PagedResult<ReservationListItem>> Get(int page = 1)
         {
-            var reservations = await UnitOfWork.Reservation.ListAll();
-            return reservations
-                .Select(r => new ReservationListItem(
-                    r.Id,
-                    r.Contact.Name,
-                    r.DateTime,
-                    r.Ranking ?? 0,
-                    r.Favorite
-                ))
-                .ToArray();
+            var pagedResult = await UnitOfWork.Reservation.ListWithContacts(DefaultPageSize, page);
+
+            return pagedResult.Convert(r => new ReservationListItem(
+                r.Id,
+                r.Contact.Name,
+                r.DateTime,
+                r.Ranking ?? 0,
+                r.Favorite
+            ));
         }
     }
 

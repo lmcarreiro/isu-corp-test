@@ -1,5 +1,6 @@
 ﻿using IsuCorpTest.Core.Entity;
 using IsuCorpTest.Core.Repository;
+using IsuCorpTest.Core.Util;
 using IsuCorpTest.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -44,7 +45,7 @@ namespace IsuCorpTest.Data.Repository
 
         public virtual async Task<TInterface?> GetById(int id)
         {
-            var entity = await Set.FindAsync(id);
+            var entity = await Set.SingleAsync(e => e.Id == id);
             return entity;
         }
 
@@ -52,6 +53,27 @@ namespace IsuCorpTest.Data.Repository
         {
             var list = await Set.ToListAsync<TInterface>();
             return list;
+        }
+
+        protected async Task<PagedResult<TInterface>> ListWithPading(IQueryable<TConcret> query, int pageSize = 0, int page = 1)
+        {
+            var totalCountTask = query.CountAsync();
+
+            if (pageSize > 0)
+            {
+                query = query.Skip((page - 1) * pageSize);
+                query = query.Take(pageSize);
+            }
+
+            var pagedRecordsTask = query.ToListAsync<TInterface>();
+
+            return new PagedResult<TInterface>
+            {
+                PageSize = pageSize > 0 ? pageSize : await totalCountTask,
+                PageNumber = page,
+                TotalCount = await totalCountTask,
+                PagedRecords = await pagedRecordsTask,
+            };
         }
     }
 
@@ -81,10 +103,11 @@ namespace IsuCorpTest.Data.Repository
 
         }
 
-        public override async Task<IList<IReservation>> ListAll()
+        public async Task<PagedResult<IReservation>> ListWithContacts(int pageSize = 0, int page = 1)
         {
-            var list = await Set.Include(r => r.Contact).ToListAsync<IReservation>();
-            return list;
+            var query = Set.Include(r => r.Contact);
+            var result = await ListWithPading(query, pageSize, page);
+            return result;
         }
     }
 }
