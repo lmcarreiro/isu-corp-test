@@ -6,6 +6,7 @@ import { ReservationDetailComponent } from './components/reservation-detail.comp
 const routes: Routes = [
   { path: '', redirectTo: '/reservations-list', pathMatch: 'full' },
   { path: 'reservations-list', component: ReservationsListComponent },
+  { path: 'reservations-list/:page', component: ReservationsListComponent },
   { path: 'reservation', component: ReservationDetailComponent },
   { path: 'reservation/:id', component: ReservationDetailComponent },
 ];

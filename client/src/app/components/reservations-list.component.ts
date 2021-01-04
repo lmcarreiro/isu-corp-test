@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../app.service';
 import { PagedResult, emptyPagedResult } from '../models/paged-result';
 import { ReservationListItem } from '../models/reservation-list-item';
 import { ReservationService } from '../services/reservation.service';
+import { PAGE_MARKER } from './paginator.component';
 
 @Component({
   selector: 'app-reservations-list',
@@ -57,7 +59,7 @@ import { ReservationService } from '../services/reservation.service';
           </tr>
         </tbody>
       </table>
-      <util-paginator [results]="reservations"></util-paginator>
+      <util-paginator [results]="reservations" [targetLink]="routerLink"></util-paginator>
     </div>
   `,
   styles: [
@@ -127,6 +129,7 @@ import { ReservationService } from '../services/reservation.service';
   ],
 })
 export class ReservationsListComponent implements OnInit {
+  routerLink = `/reservations-list/${PAGE_MARKER}`;
   reservations: PagedResult<ReservationListItem> = emptyPagedResult;
 
   sorting = 'date-asc';
@@ -139,7 +142,11 @@ export class ReservationsListComponent implements OnInit {
     { id: 'ranking', name: 'By Ranking' },
   ];
 
-  constructor(private appService: AppService, private reservationService: ReservationService) {}
+  constructor(
+    private appService: AppService,
+    private route: ActivatedRoute,
+    private reservationService: ReservationService
+  ) {}
 
   ngOnInit(): void {
     this.appService.setHeaderData({
@@ -150,12 +157,20 @@ export class ReservationsListComponent implements OnInit {
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     });
-    this.getReservations();
+
+    const page = parseInt(this.route.snapshot.paramMap.get('page')!) || 1;
+    this.getReservations(page);
+
+    this.route.params.subscribe(params => {
+      const page = parseInt(params['page']) || 1;
+      this.getReservations(page);
+      window.scroll(0, 0);
+    });
   }
 
-  getReservations(): void {
+  getReservations(page: number): void {
     this.reservationService
-      .getReservations()
+      .getReservations(page)
       .subscribe(reservations => (this.reservations = reservations));
   }
 }

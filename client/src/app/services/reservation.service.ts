@@ -28,7 +28,7 @@ export class ReservationService {
     );
   }
 
-  getReservations(page: number = 1): Observable<PagedResult<ReservationListItem>> {
+  getReservations(page: number): Observable<PagedResult<ReservationListItem>> {
     // TODO: send the message _after_ fetching the reservations
     return this.http
       .get<PagedResult<ReservationListItem>>(`${this.reservationsUrl}?page=${page}`)

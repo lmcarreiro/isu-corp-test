@@ -1,19 +1,34 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PagedResult } from '../models/paged-result';
 
+export const PAGE_MARKER = ':page';
+
 @Component({
   selector: 'util-paginator',
   template: `
     <div class="pager">
-      <button class="btn-pager">&lt;</button>
       <button
-        *ngFor="let page of pages"
         class="btn-pager"
+        [disabled]="results.pageNumber === 1"
+        [routerLink]="getLink(results.pageNumber - 1)"
+      >
+        &lt;
+      </button>
+      <button
+        class="btn-pager"
+        *ngFor="let page of pages"
+        [routerLink]="getLink(page)"
         [class.selected]="page === results.pageNumber"
       >
         {{ page }}
       </button>
-      <button class="btn-pager">&gt;</button>
+      <button
+        class="btn-pager"
+        [disabled]="results.pageNumber === pages.length"
+        [routerLink]="getLink(results.pageNumber + 1)"
+      >
+        &gt;
+      </button>
     </div>
   `,
   styles: [
@@ -34,13 +49,28 @@ import { PagedResult } from '../models/paged-result';
 })
 export class PaginatorComponent implements OnInit {
   @Input() results!: PagedResult<any>;
+  @Input() targetLink!: string;
 
   get pages(): number[] {
+    if (this.results.pageSize === 0) {
+      return [];
+    }
+
     const pageCount = Math.ceil(this.results.totalCount / this.results.pageSize);
     return [...Array(pageCount)].map((_, i) => i + 1);
   }
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (!this.targetLink.includes(PAGE_MARKER)) {
+      throw new Error(
+        `PaginatorComponent.routerLink input property must have a '${PAGE_MARKER}' marker.`
+      );
+    }
+  }
+
+  getLink(page: number) {
+    return this.targetLink.replace(PAGE_MARKER, page.toString());
+  }
 }
