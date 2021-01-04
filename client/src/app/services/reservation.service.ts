@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { ReservationListItem } from '../models/reservation-list-item';
 import { environment } from 'src/environments/environment';
+import { emptyPagedResult, PagedResult } from '../models/paged-result';
 
 @Injectable({
   providedIn: 'root',
@@ -27,12 +28,16 @@ export class ReservationService {
     );
   }
 
-  getReservations(): Observable<ReservationListItem[]> {
+  getReservations(page: number = 1): Observable<PagedResult<ReservationListItem>> {
     // TODO: send the message _after_ fetching the reservations
-    return this.http.get<ReservationListItem[]>(this.reservationsUrl).pipe(
-      tap(_ => this.log('fetched reservations')),
-      catchError(this.handleError<ReservationListItem[]>('getReservations', []))
-    );
+    return this.http
+      .get<PagedResult<ReservationListItem>>(`${this.reservationsUrl}?page=${page}`)
+      .pipe(
+        tap(_ => this.log('fetched reservations')),
+        catchError(
+          this.handleError<PagedResult<ReservationListItem>>('getReservations', emptyPagedResult)
+        )
+      );
   }
 
   // TODO: replace the model to get detailed reservation and contact info

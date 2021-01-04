@@ -15,6 +15,7 @@ import { HeaderComponent } from './components/header.component';
 import { DropdownComponent } from './components/dropdown.component';
 import { InputComponent } from './components/input.component';
 import { RichTextareaComponent } from './components/rich-textarea.component';
+import { PaginatorComponent } from './components/paginator.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { RichTextareaComponent } from './components/rich-textarea.component';
     DropdownComponent,
     InputComponent,
     RichTextareaComponent,
+    PaginatorComponent,
   ],
   imports: [
     BrowserModule,

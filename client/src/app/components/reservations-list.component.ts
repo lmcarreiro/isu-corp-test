@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
+import { PagedResult, emptyPagedResult } from '../models/paged-result';
 import { ReservationListItem } from '../models/reservation-list-item';
 import { ReservationService } from '../services/reservation.service';
 
@@ -16,7 +17,7 @@ import { ReservationService } from '../services/reservation.service';
       </div>
       <table class="reservations-table">
         <tbody>
-          <tr *ngFor="let reservation of reservationsList">
+          <tr *ngFor="let reservation of reservations.pagedRecords">
             <td class="hide-on-mobile">
               <img
                 style="display: block; margin-left: 3px;"
@@ -56,16 +57,7 @@ import { ReservationService } from '../services/reservation.service';
           </tr>
         </tbody>
       </table>
-      <div class="pager">
-        <button class="btn-pager">&lt;</button>
-        <button class="btn-pager">1</button>
-        <button class="btn-pager selected">2</button>
-        <button class="btn-pager">3</button>
-        <button class="btn-pager">4</button>
-        ...
-        <button class="btn-pager">50</button>
-        <button class="btn-pager">&gt;</button>
-      </div>
+      <util-paginator [results]="reservations"></util-paginator>
     </div>
   `,
   styles: [
@@ -105,18 +97,6 @@ import { ReservationService } from '../services/reservation.service';
         font-size: 0.8em;
       }
 
-      .btn-pager {
-        margin: 0px 1px;
-        border: 1px solid grey;
-        border-radius: 3px;
-        outline: none;
-        cursor: pointer;
-      }
-      .btn-pager.selected {
-        color: white;
-        background-color: grey;
-      }
-
       .favorite {
         display: flex;
         cursor: pointer;
@@ -147,7 +127,7 @@ import { ReservationService } from '../services/reservation.service';
   ],
 })
 export class ReservationsListComponent implements OnInit {
-  reservationsList: ReservationListItem[] = [];
+  reservations: PagedResult<ReservationListItem> = emptyPagedResult;
 
   sorting = 'date-asc';
 
@@ -176,6 +156,6 @@ export class ReservationsListComponent implements OnInit {
   getReservations(): void {
     this.reservationService
       .getReservations()
-      .subscribe(reservationsList => (this.reservationsList = reservationsList));
+      .subscribe(reservations => (this.reservations = reservations));
   }
 }
