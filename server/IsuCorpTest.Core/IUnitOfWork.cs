@@ -14,6 +14,6 @@ namespace IsuCorpTest.Core
         IContactRepository Contact { get; }
         IReservationRepository Reservation { get; }
 
-        Task Save(CancellationToken cancellationToken);
+        Task Save(CancellationToken cancellationToken = default);
     }
 }

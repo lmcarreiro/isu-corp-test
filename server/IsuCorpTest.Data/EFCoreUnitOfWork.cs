@@ -28,7 +28,7 @@ namespace IsuCorpTest.Data
         public IReservationRepository Reservation => _reservation ??= new ReservationRepository(Context);
         private IReservationRepository? _reservation;
 
-        public async Task Save(CancellationToken cancellationToken)
+        public async Task Save(CancellationToken cancellationToken = default)
         {
             await Context.SaveChangesAsync(cancellationToken);
         }
