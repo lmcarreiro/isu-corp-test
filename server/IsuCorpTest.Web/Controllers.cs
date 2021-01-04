@@ -42,5 +42,37 @@ namespace IsuCorpTest.Web.Controllers
         }
     }
 
-    public record ReservationListItem(int Id, string ContactName, DateTime ReservationDate, int Ranking, bool Favorite);
+
+    [ApiController]
+    [Route("[controller]")]
+    public class ContactTypeController : CustomControllerBase
+    {
+        public ContactTypeController(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+
+        [HttpGet]
+        public async Task<ContactType[]> Get(int page = 1)
+        {
+            var list = await UnitOfWork.ContactType.ListAll();
+
+            return list
+                .Select(r => new ContactType(
+                    r.Id,
+                    r.Name
+                ))
+                .ToArray();
+        }
+    }
+
+    public record ReservationListItem(
+        int Id
+        , string ContactName
+        , DateTime ReservationDate
+        , int Ranking
+        , bool Favorite
+    );
+
+    public record ContactType(
+        int Id
+        , string Name
+    );
 }
