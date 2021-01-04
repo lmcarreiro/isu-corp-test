@@ -80,5 +80,11 @@ namespace IsuCorpTest.Data.Repository
         {
 
         }
+
+        public override async Task<IList<IReservation>> ListAll()
+        {
+            var list = await Set.Include(r => r.Contact).ToListAsync<IReservation>();
+            return list;
+        }
     }
 }
