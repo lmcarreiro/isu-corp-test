@@ -11,9 +11,7 @@ namespace IsuCorpTest.Data
     public class DataContext : DbContext
     {
         public DbSet<ContactType> ContactType { get; set; } = null!;
-
         public DbSet<Contact> Contact { get; set; } = null!;
-
         public DbSet<Reservation> Reservation { get; set; } = null!;
 
         public DataContext(DbContextOptions<DataContext> options)

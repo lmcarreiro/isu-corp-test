@@ -9,6 +9,18 @@ using Microsoft.Extensions.Logging;
 
 namespace IsuCorpTest.Web.Controllers
 {
+    public abstract class CustomControllerBase : ControllerBase
+    {
+        protected const int DefaultPageSize = 10;
+
+        protected IUnitOfWork UnitOfWork { get; }
+
+        public CustomControllerBase(IUnitOfWork unitOfWork)
+        {
+            UnitOfWork = unitOfWork;
+        }
+    }
+
     [ApiController]
     [Route("[controller]")]
     public class ReservationController : CustomControllerBase
