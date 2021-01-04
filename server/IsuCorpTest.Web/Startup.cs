@@ -63,9 +63,6 @@ namespace IsuCorpTest.Web
             {
                 endpoints.MapControllers();
             });
-
-            testData.InsertData();
-            testData.PrintData();
         }
     }
 }
