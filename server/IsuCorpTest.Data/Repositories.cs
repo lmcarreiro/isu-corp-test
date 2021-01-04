@@ -57,7 +57,7 @@ namespace IsuCorpTest.Data.Repository
 
         protected async Task<PagedResult<TInterface>> ListWithPading(IQueryable<TConcret> query, int pageSize = 0, int page = 1)
         {
-            var totalCountTask = query.CountAsync();
+            var totalCount = await query.CountAsync();
 
             if (pageSize > 0)
             {
@@ -65,14 +65,14 @@ namespace IsuCorpTest.Data.Repository
                 query = query.Take(pageSize);
             }
 
-            var pagedRecordsTask = query.ToListAsync<TInterface>();
+            var pagedRecords = await query.ToListAsync<TInterface>();
 
             return new PagedResult<TInterface>
             {
-                PageSize = pageSize > 0 ? pageSize : await totalCountTask,
+                PageSize = pageSize > 0 ? pageSize : totalCount,
                 PageNumber = page,
-                TotalCount = await totalCountTask,
-                PagedRecords = await pagedRecordsTask,
+                TotalCount = totalCount,
+                PagedRecords = pagedRecords,
             };
         }
     }
