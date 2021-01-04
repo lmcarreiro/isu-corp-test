@@ -1,28 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { catchError, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { MessageService } from './message.service';
 import { ReservationListItem } from '../models/reservation-list-item';
-import { environment } from 'src/environments/environment';
 import { emptyPagedResult, PagedResult } from '../models/paged-result';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ReservationService {
-  private reservationsUrl = `${environment.baseUrl}/reservation`;
-
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-  };
-
-  constructor(private http: HttpClient, private messageService: MessageService) {}
+export class ReservationService extends BaseService {
+  constructor(http: HttpClient, messageService: MessageService) {
+    super('Reservation', http, messageService);
+  }
 
   // TODO: replace the model to get detailed reservation and contact info
   getReservationById(id: number): Observable<ReservationListItem | undefined> {
     // TODO: send the message _after_ fetching the reservation
-    return this.http.get<ReservationListItem>(`${this.reservationsUrl}/${id}`).pipe(
+    return this.http.get<ReservationListItem>(`${this.baseUrl}/${id}`).pipe(
       tap(_ => this.log(`fetched reservation id=${id}`)),
       catchError(this.handleError<ReservationListItem>(`getReservationById id=${id}`))
     );
@@ -30,45 +26,19 @@ export class ReservationService {
 
   getReservations(page: number): Observable<PagedResult<ReservationListItem>> {
     // TODO: send the message _after_ fetching the reservations
-    return this.http
-      .get<PagedResult<ReservationListItem>>(`${this.reservationsUrl}?page=${page}`)
-      .pipe(
-        tap(_ => this.log('fetched reservations')),
-        catchError(
-          this.handleError<PagedResult<ReservationListItem>>('getReservations', emptyPagedResult)
-        )
-      );
+    return this.http.get<PagedResult<ReservationListItem>>(`${this.baseUrl}?page=${page}`).pipe(
+      tap(_ => this.log('fetched reservations')),
+      catchError(
+        this.handleError<PagedResult<ReservationListItem>>('getReservations', emptyPagedResult)
+      )
+    );
   }
 
   // TODO: replace the model to get detailed reservation and contact info
   updateReservation(reservation: ReservationListItem): Observable<void> {
-    return this.http.put(this.reservationsUrl, reservation, this.httpOptions).pipe(
+    return this.http.put(this.baseUrl, reservation, this.httpOptions).pipe(
       tap(_ => this.log(`updated reservation id=${reservation.id}`)),
       catchError(this.handleError<any>('updateReservation'))
     );
-  }
-
-  /** Log a ReservationService message with the MessageService */
-  private log(message: string) {
-    this.messageService.add(`ReservationService: ${message}`);
-  }
-
-  /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
   }
 }
