@@ -51,7 +51,7 @@ namespace IsuCorpTest.Core.Services
         public async Task<Reservation> CreateOrUpdateReservationAndContact(Reservation input)
         {
             var contact = await InsertOrUpdateContact(input);
-            var reservation = await InsertOrUpdateReservation(input);
+            var reservation = await InsertOrUpdateReservation(input, contact);
 
             await UnitOfWork.Save();
 
@@ -74,7 +74,7 @@ namespace IsuCorpTest.Core.Services
                 return contact;
             }
 
-            async Task<IReservation> InsertOrUpdateReservation(Reservation input)
+            async Task<IReservation> InsertOrUpdateReservation(Reservation input, IContact contact)
             {
                 var reservation = input.Id > 0
                     ? await UnitOfWork.Reservation.GetById(input.Id)
