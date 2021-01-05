@@ -39,6 +39,20 @@ namespace IsuCorpTest.Data.Repository
             return Task.CompletedTask;
         }
 
+        public virtual Task InsertOrUpdate(TInterface entity)
+        {
+            if (entity.Id > 0)
+            {
+                Set.Update((TConcret)entity);
+            }
+            else
+            {
+                Set.Add((TConcret)entity);
+            }
+            
+            return Task.CompletedTask;
+        }
+
         public virtual Task Update(TInterface entity)
         {
             Set.Update((TConcret)entity);

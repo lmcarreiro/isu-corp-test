@@ -33,8 +33,7 @@ namespace IsuCorpTest.Web.Controllers
         public Task<PagedResult<ReservationListItem>> Get(int page = 1) => ReservationService.ListReservations(DefaultPageSize, page);
 
         [HttpPost]
-        public Task<Reservation> Post(Reservation input) => ReservationService.CreateReservation(input);
-        
+        public Task<Reservation> Post(Reservation reservation) => ReservationService.CreateOrUpdateReservationAndContact(reservation);
     }
 
 

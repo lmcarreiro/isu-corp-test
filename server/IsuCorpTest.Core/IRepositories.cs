@@ -15,6 +15,7 @@ namespace IsuCorpTest.Core.Repository
         Task<T?> TryGetById(int id);
         Task<IList<T>> ListAll();
         Task Insert(T entity);
+        Task InsertOrUpdate(T entity);
         Task Update(T entity);
         Task Delete(T entity);
     }
