@@ -24,10 +24,15 @@ export class ReservationService extends BaseService {
     );
   }
 
-  getReservations(page: number): Observable<PagedResultModel<ReservationListItemModel>> {
+  getReservations(
+    page: number,
+    sorting: string
+  ): Observable<PagedResultModel<ReservationListItemModel>> {
     // TODO: send the message _after_ fetching the reservations
     return this.http
-      .get<PagedResultModel<ReservationListItemModel>>(`${this.baseUrl}?page=${page}`)
+      .get<PagedResultModel<ReservationListItemModel>>(
+        `${this.baseUrl}?page=${page}&sorting=${sorting}`
+      )
       .pipe(
         tap(_ => this.log('fetched reservations')),
         catchError(

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../app.service';
 import { PagedResultModel, emptyPagedResult } from '../../models/paged-result.model';
 import { ReservationListItemModel } from '../../models/reservation-list-item.model';
@@ -132,21 +132,37 @@ import { PAGE_MARKER } from '../util/paginator.component';
   ],
 })
 export class ReservationsListComponent implements OnInit {
-  routerLink = `/reservations-list/${PAGE_MARKER}`;
+  get routerLink() {
+    return `/reservations-list/${PAGE_MARKER}/${this.sorting}`;
+  }
+
   reservations: PagedResultModel<ReservationListItemModel> = emptyPagedResult;
 
-  sorting = 'date-asc';
+  currentPage = 1;
+
+  #sorting = 'date-asc';
+  get sorting(): string {
+    return this.#sorting;
+  }
+  set sorting(value: string) {
+    if (value !== this.#sorting) {
+      this.#sorting = value;
+      this.currentPage = 1;
+      this.router.navigateByUrl(this.routerLink.replace(PAGE_MARKER, this.currentPage.toString()));
+    }
+  }
 
   sortingOptions = [
     { id: 'date-asc', name: 'By Date Ascending' },
     { id: 'date-desc', name: 'By Date Descending' },
     { id: 'name-asc', name: 'By Alphabetic Ascending' },
     { id: 'name-desc', name: 'By Alphabetic Descending' },
-    { id: 'ranking', name: 'By Ranking' },
+    { id: 'ranking-desc', name: 'By Ranking' },
   ];
 
   constructor(
     private appService: AppService,
+    private router: Router,
     private route: ActivatedRoute,
     private reservationService: ReservationService
   ) {}
@@ -163,15 +179,16 @@ export class ReservationsListComponent implements OnInit {
     });
 
     this.route.params.subscribe(params => {
-      const page = parseInt(params['page']) || 1;
-      this.getReservations(page);
+      this.currentPage = parseInt(params['page']) || this.currentPage;
+      this.sorting = params['sorting'] || this.sorting;
+      this.getReservations();
       window.scroll(0, 0);
     });
   }
 
-  getReservations(page: number): void {
+  getReservations(): void {
     this.reservationService
-      .getReservations(page)
+      .getReservations(this.currentPage, this.sorting)
       .subscribe(reservations => (this.reservations = reservations));
   }
 
