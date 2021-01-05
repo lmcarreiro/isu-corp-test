@@ -8,10 +8,10 @@ import { RatingModule } from 'ng-starrating';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReservationsListComponent } from './components/reservations-list.component';
-import { ReservationDetailComponent } from './components/reservation-detail.component';
-import { MessagesComponent } from './components/messages.component';
-import { HeaderComponent } from './components/header.component';
+import { ReservationsListComponent } from './components/route/reservations-list.component';
+import { ReservationDetailComponent } from './components/route/reservation-detail.component';
+import { MessagesComponent } from './components/layout/messages.component';
+import { HeaderComponent } from './components/layout/header.component';
 import { DropdownComponent } from './components/util/dropdown.component';
 import { InputComponent } from './components/util/input.component';
 import { RichTextareaComponent } from './components/util/rich-textarea.component';

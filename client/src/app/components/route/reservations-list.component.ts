@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AppService } from '../app.service';
-import { PagedResultModel, emptyPagedResult } from '../models/paged-result.model';
-import { ReservationListItemModel } from '../models/reservation-list-item.model';
-import { ReservationService } from '../services/reservation.service';
-import { PAGE_MARKER } from './util/paginator.component';
+import { AppService } from '../../app.service';
+import { PagedResultModel, emptyPagedResult } from '../../models/paged-result.model';
+import { ReservationListItemModel } from '../../models/reservation-list-item.model';
+import { ReservationService } from '../../services/reservation.service';
+import { PAGE_MARKER } from '../util/paginator.component';
 
 @Component({
-  selector: 'app-reservations-list',
+  selector: 'route-reservations-list',
   template: `
     <div class="container">
       <div class="sorting-dropdown full-width-on-mobile" style="width: 260px;">

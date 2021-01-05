@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { ReservationService } from '../services/reservation.service';
-import { AppService } from '../app.service';
-import { ReservationModel } from '../models/reservation.model';
+import { ReservationService } from '../../services/reservation.service';
+import { AppService } from '../../app.service';
+import { ReservationModel } from '../../models/reservation.model';
 
 @Component({
-  selector: 'app-reservation-detail',
+  selector: 'route-reservation-detail',
   template: `
     <div class="main">
       <div class="contact-form">
