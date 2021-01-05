@@ -40,7 +40,6 @@ namespace IsuCorpTest.Web
                     .AllowAnyOrigin()
                     .AllowAnyMethod()
                     .AllowAnyHeader();
-
             }));
         }
 
@@ -53,6 +52,10 @@ namespace IsuCorpTest.Web
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "IsuCorpTest.Web v1"));
                 app.UseCors("AllowAny");
+            }
+            else
+            {
+                // TODO: serve static files
             }
 
             app.UseRouting();
