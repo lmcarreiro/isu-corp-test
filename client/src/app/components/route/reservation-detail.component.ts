@@ -26,7 +26,7 @@ import { ReservationModel } from '../../models/reservation.model';
       </div>
       <div class="padding-top-20 hide-on-mobile"></div>
       <div>
-        <util-rich-textarea></util-rich-textarea>
+        <util-rich-textarea [(text)]="reservation.description"></util-rich-textarea>
       </div>
       <div class="buttons">
         <button (click)="save()" class="btn primary full-width-on-mobile">Send</button>
