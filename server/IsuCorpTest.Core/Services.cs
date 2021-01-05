@@ -83,7 +83,7 @@ namespace IsuCorpTest.Core.Services
                 reservation.Description = input.Description;
                 reservation.Contact = contact;
 
-                await UnitOfWork.Reservation.Insert(reservation);
+                await UnitOfWork.Reservation.InsertOrUpdate(reservation);
 
                 return reservation;
             }
