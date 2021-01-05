@@ -3,9 +3,11 @@ using IsuCorpTest.Core.Repository;
 using IsuCorpTest.Core.Util;
 using IsuCorpTest.Data.DataModels;
 using Microsoft.EntityFrameworkCore;
+using MySqlConnector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -140,6 +142,15 @@ namespace IsuCorpTest.Data.Repository
             var query = Set.Include(r => r.Contact);
             var result = await ListWithPading(query, pageSize, page);
             return result;
+        }
+
+        public async Task ToggleFavorite(int reservationId, bool flag)
+        {
+            await Context.Database.ExecuteSqlRawAsync(
+                "CALL ToggleReservationFavorite(@reservationId, @flag)"
+                , new MySqlParameter("@reservationId", reservationId)
+                , new MySqlParameter("@flag", flag)
+            );
         }
     }
 }

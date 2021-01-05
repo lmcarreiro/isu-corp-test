@@ -12,7 +12,7 @@ namespace Microsoft.Extensions.DependencyInjection
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContextPool<DataContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-            services.AddTransient<TestData>(); // TODO: remove this line
+            services.AddTransient<TestData>(); // TODO: This is for testing only.
             services.AddTransient<IUnitOfWork, EFCoreUnitOfWork>();
 
             // TODO: add services

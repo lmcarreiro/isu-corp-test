@@ -87,7 +87,11 @@ namespace IsuCorpTest.Core.Services
 
                 return reservation;
             }
+        }
 
+        public async Task ToggleFavorite(int reservationId, bool flag)
+        {
+            await UnitOfWork.Reservation.ToggleFavorite(reservationId, flag);
         }
     }
 }

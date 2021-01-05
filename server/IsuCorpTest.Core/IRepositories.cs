@@ -33,5 +33,6 @@ namespace IsuCorpTest.Core.Repository
     public interface IReservationRepository : IRepository<IReservation>
     {
         Task<PagedResult<IReservation>> ListWithContacts(int pageSize = 0, int page = 1);
+        Task ToggleFavorite(int reservationId, bool flag);
     }
 }

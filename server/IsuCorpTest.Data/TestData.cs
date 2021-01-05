@@ -17,12 +17,22 @@ namespace IsuCorpTest.Data
             Context = context;
         }
         
-        public void InsertData()
+        /// <summary>
+        /// This is just test data. I would remove this code on a real production app and use migrations/seeds instead.
+        /// </summary>
+        public void InsertTestData()
         {
             // Creates the database if not exists
             // TODO: on a real production app I would certainly not use this to create the database.
             // Instead I would use migrations, which is the recommended way.
             Context.Database.EnsureCreated();
+            Context.Database.ExecuteSqlRaw(@"
+                DROP PROCEDURE IF EXISTS ToggleReservationFavorite;
+                CREATE PROCEDURE ToggleReservationFavorite(IN resId INT, IN flag TINYINT)
+                BEGIN
+                    UPDATE Reservation SET Favorite = flag Where Id = resId;
+                END;
+            ");
 
             ContactType[] contactTypes = new[]
             {
@@ -56,21 +66,14 @@ namespace IsuCorpTest.Data
             };
             Context.Reservation.AddRange(reservations);
 
-            // Saves changes
-            Context.SaveChanges();
-        }
-
-        public void PrintData()
-        {
-            // Gets and prints all reservations in database
-            var reservations = Context.Reservation.Include(p => p.Contact);
-
-            foreach (var r in reservations)
+            try
             {
-                var data = new StringBuilder();
-                data.AppendLine($"Description: {r.Description}");
-                data.AppendLine($"Contact Name: {r.Contact.Name}");
-                Console.WriteLine(data.ToString());
+                // Saves changes
+                Context.SaveChanges();
+            }
+            catch
+            {
+                // if it fails it's because the data were already inserted in a previous run. Just ignore.
             }
         }
     }
