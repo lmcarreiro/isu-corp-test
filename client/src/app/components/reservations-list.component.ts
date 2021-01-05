@@ -159,9 +159,6 @@ export class ReservationsListComponent implements OnInit {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     });
 
-    const page = parseInt(this.route.snapshot.paramMap.get('page')!) || 1;
-    this.getReservations(page);
-
     this.route.params.subscribe(params => {
       const page = parseInt(params['page']) || 1;
       this.getReservations(page);
