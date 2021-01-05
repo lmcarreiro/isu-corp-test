@@ -30,6 +30,10 @@ namespace IsuCorpTest.Web.Controllers
         }
 
         [HttpGet]
+        [Route("{id}")]
+        public Task<Reservation> GetById(int id) => ReservationService.GetReservation(id);
+
+        [HttpGet]
         public Task<PagedResult<ReservationListItem>> Get(int page = 1) => ReservationService.ListReservations(DefaultPageSize, page);
 
         [HttpPost]

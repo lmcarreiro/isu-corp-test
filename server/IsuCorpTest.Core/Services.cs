@@ -35,6 +35,11 @@ namespace IsuCorpTest.Core.Services
     {
         public ReservationService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
+        public async Task<Reservation> GetReservation(int id)
+        {
+            var reservation = await UnitOfWork.Reservation.GetById(id);
+            return Reservation.FromEntity(reservation);
+        }
 
         public async Task<PagedResult<ReservationListItem>> ListReservations(int pageSize, int page)
         {

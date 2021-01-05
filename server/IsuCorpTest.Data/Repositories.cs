@@ -125,6 +125,16 @@ namespace IsuCorpTest.Data.Repository
 
         }
 
+        public override async Task<IReservation> GetById(int id)
+        {
+            var entity = await Set
+                .Include(e => e.Contact)
+                .ThenInclude(c => c.Type)
+                .SingleAsync(e => e.Id == id);
+
+            return entity;
+        }
+
         public async Task<PagedResult<IReservation>> ListWithContacts(int pageSize = 0, int page = 1)
         {
             var query = Set.Include(r => r.Contact);

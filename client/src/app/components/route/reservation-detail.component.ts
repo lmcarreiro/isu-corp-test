@@ -110,7 +110,7 @@ export class ReservationDetailComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.reservationService.getReservationById(parseInt(id)).subscribe(reservation => {
-        //this.reservation = reservation || this.emptyReservation;
+        this.reservation = reservation || this.emptyReservation;
       });
     }
   }
