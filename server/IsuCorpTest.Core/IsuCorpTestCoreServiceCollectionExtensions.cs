@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using IsuCorpTest.Core.Services;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -7,7 +8,8 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddIsuCorpTestCore(this IServiceCollection services)
         {
-            // TODO: add services
+            services.AddTransient<ContactService>();
+            services.AddTransient<ReservationService>();
             return services;
         }
     }
