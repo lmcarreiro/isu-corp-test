@@ -34,7 +34,7 @@ namespace IsuCorpTest.Data
                 END;
             ");
 
-            ContactType[] contactTypes = new[]
+            ContactType[] contactTypes =
             {
                 new ContactType { Name = "Contact Type 1" },
                 new ContactType { Name = "Contact Type 2" },
@@ -42,7 +42,7 @@ namespace IsuCorpTest.Data
             };
             Context.ContactType.AddRange(contactTypes);
 
-            Contact[] contacts = new[]
+            Contact[] contacts =
             {
                 new Contact { Name = "Second Dock"  , Phone = "+55 21 987-654-321", BirthDate = new DateTime(2001, 12,  1), Type = contactTypes[0] },
                 new Contact { Name = "Primer Puerto", Phone = "+55 21 987-654-321", BirthDate = new DateTime(2002, 10,  5), Type = contactTypes[0] },
@@ -53,7 +53,7 @@ namespace IsuCorpTest.Data
             };
             Context.Contact.AddRange(contacts);
 
-            Reservation[] reservations = new[]
+            Reservation[] reservations =
             {
                 new Reservation { Contact = contacts[0], DateTime = new DateTime(2020, 5, 17, 21, 0, 0), Favorite = true , Ranking = 4   , Description = "Test number <b>1</b>" },
                 new Reservation { Contact = contacts[1], DateTime = new DateTime(2020, 5, 18, 20, 0, 0), Favorite = false, Ranking = 3   , Description = "Test number <b>2</b>" },
