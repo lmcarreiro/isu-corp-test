@@ -45,4 +45,14 @@ export class ReservationService extends BaseService {
       catchError(this.handleError<any>('createReservation'))
     );
   }
+
+  toggleFavorite(id: number, flag: boolean): Observable<void> {
+    // TODO: send the message _after_ fetching the reservation
+    return this.http
+      .post<void>(`${this.baseUrl}/${id}/ToggleFavorite/${flag}`, {}, this.httpOptions)
+      .pipe(
+        tap(_ => this.log(`fetched reservation id=${id}`)),
+        catchError(this.handleError<void>(`getReservationById id=${id}`))
+      );
+  }
 }

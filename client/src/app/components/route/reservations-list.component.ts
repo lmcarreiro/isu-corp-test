@@ -46,7 +46,10 @@ import { PAGE_MARKER } from '../util/paginator.component';
               </div>
             </td>
             <td>
-              <div class="favorite favorite-{{ reservation.favorite ? 'enabled' : 'disabled' }}">
+              <div
+                class="favorite favorite-{{ reservation.favorite ? 'selected' : 'unselected' }}"
+                (click)="toggleFavorite(reservation)"
+              >
                 <span class="favorite-text hide-on-mobile">Add Favorites</span>
                 <span class="favorite-icon"></span>
               </div>
@@ -103,10 +106,10 @@ import { PAGE_MARKER } from '../util/paginator.component';
         display: flex;
         cursor: pointer;
       }
-      .favorite-enabled {
-      }
-      .favorite-disabled {
+      .favorite-selected {
         color: #aaa;
+      }
+      .favorite-unselected {
       }
       .favorite-text {
         display: flex;
@@ -119,10 +122,10 @@ import { PAGE_MARKER } from '../util/paginator.component';
         width: 28px;
         height: 28px;
       }
-      .favorite-enabled .favorite-icon {
+      .favorite-selected .favorite-icon {
         background-image: url(../../assets/icon-heart-enabled.jpg);
       }
-      .favorite-disabled .favorite-icon {
+      .favorite-unselected .favorite-icon {
         background-image: url(../../assets/icon-heart-disabled.jpg);
       }
     `,
@@ -170,5 +173,23 @@ export class ReservationsListComponent implements OnInit {
     this.reservationService
       .getReservations(page)
       .subscribe(reservations => (this.reservations = reservations));
+  }
+
+  togglingFavorite = new Set<number>();
+  async toggleFavorite(reservation: ReservationListItemModel) {
+    // Condition to avoid duplicate call on the same item
+    if (this.togglingFavorite.has(reservation.id)) {
+      return;
+    }
+
+    this.togglingFavorite.add(reservation.id);
+    try {
+      await this.reservationService
+        .toggleFavorite(reservation.id, !reservation.favorite)
+        .toPromise();
+      reservation.favorite = !reservation.favorite;
+    } finally {
+      this.togglingFavorite.delete(reservation.id);
+    }
   }
 }

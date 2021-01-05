@@ -40,7 +40,7 @@ namespace IsuCorpTest.Web.Controllers
         public Task<Reservation> Post(Reservation reservation) => ReservationService.CreateOrUpdateReservationAndContact(reservation);
 
         [HttpPost]
-        [Route("{id}/{flag}")]
+        [Route("{id}/ToggleFavorite/{flag}")]
         public Task PostToggleFavorite(int id, bool flag) => ReservationService.ToggleFavorite(id, flag);
     }
 
