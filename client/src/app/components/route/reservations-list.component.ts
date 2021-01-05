@@ -155,8 +155,8 @@ export class ReservationsListComponent implements OnInit {
   sortingOptions = [
     { id: 'date-asc', name: 'By Date Ascending' },
     { id: 'date-desc', name: 'By Date Descending' },
-    { id: 'name-asc', name: 'By Alphabetic Ascending' },
-    { id: 'name-desc', name: 'By Alphabetic Descending' },
+    { id: 'contactName-asc', name: 'By Alphabetic Ascending' },
+    { id: 'contactName-desc', name: 'By Alphabetic Descending' },
     { id: 'ranking-desc', name: 'By Ranking' },
   ];
 

@@ -1,4 +1,5 @@
 ﻿using IsuCorpTest.Core.Entity;
+using IsuCorpTest.Core.Enums;
 using IsuCorpTest.Core.Util;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace IsuCorpTest.Core.Repository
 
     public interface IReservationRepository : IRepository<IReservation>
     {
-        Task<PagedResult<IReservation>> ListWithContacts(int pageSize = 0, int page = 1);
+        Task<PagedResult<IReservation>> ListWithContacts(int pageSize, int page, ReservationSortingColumn sortBy, SortingDirection sortDirection);
         Task ToggleFavorite(int reservationId, bool flag);
     }
 }

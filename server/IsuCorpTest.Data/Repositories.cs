@@ -1,4 +1,5 @@
 ﻿using IsuCorpTest.Core.Entity;
+using IsuCorpTest.Core.Enums;
 using IsuCorpTest.Core.Repository;
 using IsuCorpTest.Core.Util;
 using IsuCorpTest.Data.DataModels;
@@ -79,9 +80,25 @@ namespace IsuCorpTest.Data.Repository
             return list;
         }
 
-        protected async Task<PagedResult<TInterface>> ListWithPading(IQueryable<TConcret> query, int pageSize = 0, int page = 1)
+        protected async Task<PagedResult<TInterface>> ListWithPaging(
+            IQueryable<TConcret> query,
+            int pageSize = 0,
+            int page = 1,
+            Func<IQueryable<TConcret>, IQueryable<TConcret>>? addFilter = null,
+            Func<IQueryable<TConcret>, IQueryable<TConcret>>? addSorting = null
+        )
         {
+            if (addFilter != null)
+            {
+                query = addFilter(query);
+            }
+
             var totalCount = await query.CountAsync();
+
+            if (addSorting != null)
+            {
+                query = addSorting(query);
+            }
 
             if (pageSize > 0)
             {
@@ -137,11 +154,25 @@ namespace IsuCorpTest.Data.Repository
             return entity;
         }
 
-        public async Task<PagedResult<IReservation>> ListWithContacts(int pageSize = 0, int page = 1)
+        public async Task<PagedResult<IReservation>> ListWithContacts(int pageSize, int page, ReservationSortingColumn sortBy, SortingDirection sortDirection)
         {
             var query = Set.Include(r => r.Contact);
-            var result = await ListWithPading(query, pageSize, page);
+            var result = await ListWithPaging(query, pageSize, page, null, q => AddSorting(q, sortBy, sortDirection));
             return result;
+        }
+
+        private IQueryable<Reservation> AddSorting(IQueryable<Reservation> query, ReservationSortingColumn sortBy, SortingDirection sortDirection)
+        {
+            return (sortBy, sortDirection) switch
+            {
+                (ReservationSortingColumn.Date,        SortingDirection.Asc)  => query.OrderBy(r           => r.DateTime),
+                (ReservationSortingColumn.Date,        SortingDirection.Desc) => query.OrderByDescending(r => r.DateTime),
+                (ReservationSortingColumn.ContactName, SortingDirection.Asc)  => query.OrderBy(r           => r.Contact.Name),
+                (ReservationSortingColumn.ContactName, SortingDirection.Desc) => query.OrderByDescending(r => r.Contact.Name),
+                (ReservationSortingColumn.Ranking,     SortingDirection.Asc)  => query.OrderBy(r           => r.Ranking),
+                (ReservationSortingColumn.Ranking,     SortingDirection.Desc) => query.OrderByDescending(r => r.Ranking),
+                (_, _) => throw new ArgumentException("Enum value not recognized"),
+            };
         }
 
         public async Task ToggleFavorite(int reservationId, bool flag)

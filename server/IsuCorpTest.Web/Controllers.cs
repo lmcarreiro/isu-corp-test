@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using IsuCorpTest.Core;
 using IsuCorpTest.Core.Entity;
+using IsuCorpTest.Core.Enums;
 using IsuCorpTest.Core.Models;
 using IsuCorpTest.Core.Services;
 using IsuCorpTest.Core.Util;
@@ -15,6 +16,24 @@ namespace IsuCorpTest.Web.Controllers
     public abstract class CustomControllerBase : ControllerBase
     {
         protected const int DefaultPageSize = 10;
+
+        protected (T Column, SortingDirection Direction) ParseSorting<T>(string sorting)
+            where T : struct, Enum
+        {
+            var s = sorting.Split("-");
+
+            if (s.Length == 2)
+            {
+                (T Column, SortingDirection Direction) result;
+
+                if (Enum.TryParse<T>(s[0], true, out result.Column) && Enum.TryParse<SortingDirection>(s[1], true, out result.Direction))
+                {
+                    return result;
+                }
+            }
+
+            return (default(T), SortingDirection.Asc);
+        }
     }
 
 
@@ -34,7 +53,10 @@ namespace IsuCorpTest.Web.Controllers
         public Task<Reservation> GetById(int id) => ReservationService.GetReservation(id);
 
         [HttpGet]
-        public Task<PagedResult<ReservationListItem>> Get(int page = 1) => ReservationService.ListReservations(DefaultPageSize, page);
+        public Task<PagedResult<ReservationListItem>> Get(int page = 1, string sorting = "date-asc") {
+            var sortingData = ParseSorting<ReservationSortingColumn>(sorting);
+            return ReservationService.ListReservations(DefaultPageSize, page, sortingData.Column, sortingData.Direction);
+        }
 
         [HttpPost]
         public Task<Reservation> Post(Reservation reservation) => ReservationService.CreateOrUpdateReservationAndContact(reservation);

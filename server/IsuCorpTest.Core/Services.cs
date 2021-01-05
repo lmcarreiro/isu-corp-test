@@ -1,4 +1,5 @@
 ﻿using IsuCorpTest.Core.Entity;
+using IsuCorpTest.Core.Enums;
 using IsuCorpTest.Core.Models;
 using IsuCorpTest.Core.Util;
 using System;
@@ -41,9 +42,9 @@ namespace IsuCorpTest.Core.Services
             return Reservation.FromEntity(reservation);
         }
 
-        public async Task<PagedResult<ReservationListItem>> ListReservations(int pageSize, int page)
+        public async Task<PagedResult<ReservationListItem>> ListReservations(int pageSize, int page, ReservationSortingColumn sortBy, SortingDirection sortDirection)
         {
-            var pagedResult = await UnitOfWork.Reservation.ListWithContacts(pageSize, page);
+            var pagedResult = await UnitOfWork.Reservation.ListWithContacts(pageSize, page, sortBy, sortDirection);
             return pagedResult.Convert(r => ReservationListItem.FromEntity(r));
         }
 
