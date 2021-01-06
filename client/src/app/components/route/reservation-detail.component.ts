@@ -5,6 +5,8 @@ import { Location } from '@angular/common';
 import { ReservationService } from '../../services/reservation.service';
 import { AppService } from '../../app.service';
 import { ReservationModel } from '../../models/reservation.model';
+import { ContactService } from 'src/app/services/contact.service';
+import { ContactModel } from 'src/app/models/contact.model';
 
 @Component({
   selector: 'route-reservation-detail',
@@ -12,7 +14,14 @@ import { ReservationModel } from '../../models/reservation.model';
     <div class="main">
       <div class="contact-form">
         <div class="contact-form-field full-width-on-mobile">
-          <util-input [(value)]="reservation.contact.name" icon="users"></util-input>
+          <util-input-autocomplete
+            icon="users"
+            [(value)]="reservation.contact.name"
+            [getDataCallback]="getContacts"
+            (selectItem)="selectContact($event)"
+            field="name"
+            placeholder="Contact Name ..."
+          ></util-input-autocomplete>
         </div>
         <div class="contact-form-field full-width-on-mobile">
           <util-dropdown-contact-type [(selected)]="typeId"></util-dropdown-contact-type>
@@ -86,6 +95,7 @@ export class ReservationDetailComponent implements OnInit {
     private appService: AppService,
     private route: ActivatedRoute,
     private reservationService: ReservationService,
+    private contactService: ContactService,
     private location: Location
   ) {}
 
@@ -113,6 +123,14 @@ export class ReservationDetailComponent implements OnInit {
         this.reservation = reservation || this.emptyReservation;
       });
     }
+  }
+
+  getContacts = (name: string) => {
+    return this.contactService.getContactsByName(name);
+  };
+
+  selectContact(contact: ContactModel): void {
+    this.reservation.contact = contact;
   }
 
   save(): void {

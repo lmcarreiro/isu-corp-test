@@ -38,6 +38,18 @@ button.secondary {
   min-height: 200px;
 }
 
+.autocomplete-container {
+  box-shadow: none !important;
+}
+
+.ng-autocomplete input {
+  font-family: inherit !important;
+  font-size: 1em !important;
+  color: #000 !important;
+  padding: 0 35px 0 2px !important;
+  background: transparent;
+}
+
 .padding-top-10 {
   padding-top: 10px;
 }
