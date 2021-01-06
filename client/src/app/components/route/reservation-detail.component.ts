@@ -34,11 +34,10 @@ import { ContactModel } from 'src/app/models/contact.model';
           ></util-input>
         </div>
         <div class="contact-form-field full-width-on-mobile">
-          <util-input
+          <util-input-datepicker
             [(value)]="reservation.contact.birthDate"
-            icon="calendar"
             placeholder="Birth Date"
-          ></util-input>
+          ></util-input-datepicker>
         </div>
       </div>
       <div class="padding-top-20 hide-on-mobile"></div>

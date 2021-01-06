@@ -38,6 +38,14 @@ button.secondary {
   min-height: 200px;
 }
 
+.dp-picker-input {
+  width: calc(100% - 10px);
+  border: none;
+  outline: none;
+  font-size: 1em;
+  font-family: inherit;
+}
+
 .autocomplete-container {
   box-shadow: none !important;
 }

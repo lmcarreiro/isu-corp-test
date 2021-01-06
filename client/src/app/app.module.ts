@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { DpDatePickerModule } from 'ng2-date-picker';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { RatingModule } from 'ng-starrating';
 
@@ -19,6 +20,7 @@ import { RichTextareaComponent } from './components/util/rich-textarea.component
 import { PaginatorComponent } from './components/util/paginator.component';
 import { DropdownContactTypeComponent } from './components/util/dropdown-contact-type.component';
 import { InputAutocompleteComponent } from './components/util/input-autocomplete.component';
+import { InputDatepickerComponent } from './components/util/input-datepicker.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { InputAutocompleteComponent } from './components/util/input-autocomplete
     PaginatorComponent,
     DropdownContactTypeComponent,
     InputAutocompleteComponent,
+    InputDatepickerComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ import { InputAutocompleteComponent } from './components/util/input-autocomplete
     AppRoutingModule,
     HttpClientModule,
     NgSelectModule,
+    DpDatePickerModule,
     AutocompleteLibModule,
     RatingModule,
     CKEditorModule,
