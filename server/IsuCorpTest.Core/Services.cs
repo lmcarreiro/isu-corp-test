@@ -30,6 +30,12 @@ namespace IsuCorpTest.Core.Services
             var list = await UnitOfWork.ContactType.ListAll();
             return list.Select(t => ContactType.FromEntity(t)).ToArray();
         }
+
+        public async Task<Contact[]> ListContactsByName(string name, int limit)
+        {
+            var list = await UnitOfWork.Contact.ListByName(name, limit);
+            return list.Select(t => Contact.FromEntity(t)).ToArray();
+        }
     }
 
     public class ReservationService : ServiceBase

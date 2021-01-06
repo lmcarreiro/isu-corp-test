@@ -16,6 +16,7 @@ namespace IsuCorpTest.Web.Controllers
     public abstract class CustomControllerBase : ControllerBase
     {
         protected const int DefaultPageSize = 10;
+        protected const int AutoCompleteListSize = 10;
 
         protected (T Column, SortingDirection Direction) ParseSorting<T>(string sorting)
             where T : struct, Enum
@@ -80,5 +81,21 @@ namespace IsuCorpTest.Web.Controllers
 
         [HttpGet]
         public Task<ContactType[]> Get() => ContactService.ListContactTypes();
+    }
+
+
+    [ApiController]
+    [Route("[controller]")]
+    public class ContactController : CustomControllerBase
+    {
+        private ContactService ContactService { get; init; }
+
+        public ContactController(ContactService contactService)
+        {
+            ContactService = contactService;
+        }
+
+        [HttpGet]
+        public Task<Contact[]> Get(string name) => ContactService.ListContactsByName(name, AutoCompleteListSize);
     }
 }

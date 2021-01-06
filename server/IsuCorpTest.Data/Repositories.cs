@@ -84,15 +84,9 @@ namespace IsuCorpTest.Data.Repository
             IQueryable<TConcret> query,
             int pageSize = 0,
             int page = 1,
-            Func<IQueryable<TConcret>, IQueryable<TConcret>>? addFilter = null,
             Func<IQueryable<TConcret>, IQueryable<TConcret>>? addSorting = null
         )
         {
-            if (addFilter != null)
-            {
-                query = addFilter(query);
-            }
-
             var totalCount = await query.CountAsync();
 
             if (addSorting != null)
@@ -134,6 +128,21 @@ namespace IsuCorpTest.Data.Repository
         {
 
         }
+
+        public async Task<IList<IContact>> ListByName(string name, int limit)
+        {
+            IQueryable<Contact> query = Set.Include(r => r.Type);
+
+            foreach (var piece in name.Split(' '))
+            {
+                query = query.Where(c => c.Name.Contains(piece));
+            }
+
+            query = query.OrderBy(c => c.Name);
+            query = query.Take(limit);
+            
+            return await query.ToListAsync<IContact>();
+        }
     }
 
     public class ReservationRepository : EFCoreRepository<Reservation, IReservation>, IReservationRepository
@@ -157,7 +166,7 @@ namespace IsuCorpTest.Data.Repository
         public async Task<PagedResult<IReservation>> ListWithContacts(int pageSize, int page, ReservationSortingColumn sortBy, SortingDirection sortDirection)
         {
             var query = Set.Include(r => r.Contact);
-            var result = await ListWithPaging(query, pageSize, page, null, q => AddSorting(q, sortBy, sortDirection));
+            var result = await ListWithPaging(query, pageSize, page, q => AddSorting(q, sortBy, sortDirection));
             return result;
         }
 

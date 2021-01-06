@@ -28,7 +28,7 @@ namespace IsuCorpTest.Core.Repository
 
     public interface IContactRepository : IRepository<IContact>
     {
-
+        Task<IList<IContact>> ListByName(string name, int limit);
     }
 
     public interface IReservationRepository : IRepository<IReservation>
