@@ -16,11 +16,25 @@ export class ReservationService extends BaseService {
     super('Reservation', http, messageService);
   }
 
-  getReservationById(id: number): Observable<ReservationModel | undefined> {
-    return this.http.get<ReservationModel>(`${this.baseUrl}/${id}`).pipe(
-      tap(_ => this.log(`fetched reservation id=${id}`)),
-      catchError(this.handleError<ReservationModel>(`getReservationById id=${id}`))
-    );
+  async getReservationById(id: number): Promise<ReservationModel | undefined> {
+    try {
+      const reservation = await this.http
+        .get<ReservationModel>(`${this.baseUrl}/${id}`)
+        .toPromise();
+
+      this.log(`fetched reservation id=${id}`);
+
+      return {
+        ...reservation,
+        contact: {
+          ...reservation.contact,
+          birthDate: reservation.contact.birthDate.substr(0, 10),
+        },
+      };
+    } catch {
+      this.handleError<ReservationModel>(`getReservationById id=${id}`);
+      return;
+    }
   }
 
   getReservations(

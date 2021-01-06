@@ -123,12 +123,11 @@ export class ReservationDetailComponent implements OnInit {
     this.location.back();
   }
 
-  getReservation(): void {
+  async getReservation() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.reservationService.getReservationById(parseInt(id)).subscribe(reservation => {
-        this.reservation = reservation || this.emptyReservation;
-      });
+      const reservation = await this.reservationService.getReservationById(parseInt(id));
+      this.reservation = reservation || this.emptyReservation;
     }
   }
 
