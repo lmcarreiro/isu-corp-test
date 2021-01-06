@@ -27,10 +27,18 @@ import { ContactModel } from 'src/app/models/contact.model';
           <util-dropdown-contact-type [(selected)]="typeId"></util-dropdown-contact-type>
         </div>
         <div class="contact-form-field full-width-on-mobile">
-          <util-input [(value)]="reservation.contact.phone" icon="phone"></util-input>
+          <util-input
+            [(value)]="reservation.contact.phone"
+            icon="phone"
+            placeholder="Phone"
+          ></util-input>
         </div>
         <div class="contact-form-field full-width-on-mobile">
-          <util-input [(value)]="reservation.contact.birthDate" icon="calendar"></util-input>
+          <util-input
+            [(value)]="reservation.contact.birthDate"
+            icon="calendar"
+            placeholder="Birth Date"
+          ></util-input>
         </div>
       </div>
       <div class="padding-top-20 hide-on-mobile"></div>

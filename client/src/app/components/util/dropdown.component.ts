@@ -15,14 +15,24 @@ import { icons } from './icons';
       class="custom"
     >
       <ng-template ng-label-tmp let-item="item">
-        <div style="display: flex; align-items: center;">
+        <div class="template">
           <img [src]="icons[icon]" />
-          <span>{{ item.name }}</span>
+          <span [class.placeholder]="!item.name">{{ item.name || placeholder }}</span>
         </div>
       </ng-template>
     </ng-select>
   `,
-  styles: [],
+  styles: [
+    `
+      .template {
+        display: flex;
+        align-items: center;
+      }
+      .placeholder {
+        color: #777;
+      }
+    `,
+  ],
 })
 export class DropdownComponent implements OnInit {
   @Input() options!: { id: string; name: string }[];
@@ -33,6 +43,8 @@ export class DropdownComponent implements OnInit {
   @Output() selectedChange: EventEmitter<string> = new EventEmitter<string>();
 
   @Input() allowEmpty: boolean = false;
+
+  @Input() placeholder: string = '';
 
   icons = icons;
 

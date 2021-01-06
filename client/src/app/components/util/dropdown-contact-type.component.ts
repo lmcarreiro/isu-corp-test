@@ -7,6 +7,7 @@ import { ContactTypeService } from 'src/app/services/contact-type.service';
   template: `
     <util-dropdown
       [allowEmpty]="true"
+      placeholder="Contact Type"
       [options]="types"
       [selected]="selected"
       (selectedChange)="selectedChange.emit($event)"

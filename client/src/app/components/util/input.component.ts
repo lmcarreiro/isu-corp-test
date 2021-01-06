@@ -7,7 +7,12 @@ import { icons } from './icons';
     <div class="container" (click)="input.focus()">
       <div class="img"><img [src]="icons[icon]" /></div>
       <div class="input">
-        <input #input [ngModel]="value" (ngModelChange)="valueChange.emit($event)" />
+        <input
+          #input
+          [ngModel]="value"
+          (ngModelChange)="valueChange.emit($event)"
+          [placeholder]="placeholder"
+        />
       </div>
     </div>
   `,
@@ -41,6 +46,8 @@ export class InputComponent implements OnInit {
 
   @Input() value!: string;
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
+
+  @Input() placeholder: string = '';
 
   icons = icons;
 
