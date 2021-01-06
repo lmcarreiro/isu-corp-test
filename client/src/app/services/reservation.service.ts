@@ -17,7 +17,6 @@ export class ReservationService extends BaseService {
   }
 
   getReservationById(id: number): Observable<ReservationModel | undefined> {
-    // TODO: send the message _after_ fetching the reservation
     return this.http.get<ReservationModel>(`${this.baseUrl}/${id}`).pipe(
       tap(_ => this.log(`fetched reservation id=${id}`)),
       catchError(this.handleError<ReservationModel>(`getReservationById id=${id}`))
@@ -28,7 +27,6 @@ export class ReservationService extends BaseService {
     page: number,
     sorting: string
   ): Observable<PagedResultModel<ReservationListItemModel>> {
-    // TODO: send the message _after_ fetching the reservations
     return this.http
       .get<PagedResultModel<ReservationListItemModel>>(
         `${this.baseUrl}?page=${page}&sorting=${sorting}`
@@ -52,7 +50,6 @@ export class ReservationService extends BaseService {
   }
 
   toggleFavorite(id: number, flag: boolean): Observable<void> {
-    // TODO: send the message _after_ fetching the reservation
     return this.http
       .post<void>(`${this.baseUrl}/${id}/ToggleFavorite/${flag}`, {}, this.httpOptions)
       .pipe(

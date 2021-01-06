@@ -15,9 +15,8 @@ export class ContactTypeService extends BaseService {
   }
 
   getContactTypes(): Observable<ContactTypeModel[]> {
-    // TODO: send the message _after_ fetching the reservations
     return this.http.get<ContactTypeModel[]>(this.baseUrl).pipe(
-      tap(_ => this.log('fetched reservations')),
+      tap(_ => this.log('fetched contact types')),
       catchError(this.handleError<ContactTypeModel[]>('getContactTypes', []))
     );
   }
