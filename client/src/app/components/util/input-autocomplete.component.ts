@@ -11,7 +11,7 @@ import { icons } from './icons';
         <ng-autocomplete
           #input
           [ngModel]="value"
-          (ngModelChange)="valueChange.emit($event)"
+          (ngModelChange)="valueChange.emit($event[field] || $event)"
           [data]="data"
           [searchKeyword]="field"
           (selected)="selectEvent($event)"
