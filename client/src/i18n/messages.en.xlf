@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="3104055680056509182" datatype="html">
+        <source>By Date Ascending</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/route/reservations-list.component.ts</context>
+          <context context-type="linenumber">156</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="576964777481174978" datatype="html">
+        <source>By Date Descending</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/route/reservations-list.component.ts</context>
+          <context context-type="linenumber">157</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4889640335454731330" datatype="html">
+        <source>By Alphabetic Ascending</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/route/reservations-list.component.ts</context>
+          <context context-type="linenumber">158</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4787393850940497824" datatype="html">
+        <source>By Alphabetic Descending</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/route/reservations-list.component.ts</context>
+          <context context-type="linenumber">159</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1991031137915703509" datatype="html">
+        <source>By Ranking</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/route/reservations-list.component.ts</context>
+          <context context-type="linenumber">160</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5497849535216558332" datatype="html">
+        <source>Reservations List</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/route/reservations-list.component.ts</context>
+          <context context-type="linenumber">172</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/route/reservation-detail.component.ts</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8779307744299844511" datatype="html">
+        <source>Create reservation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/route/reservations-list.component.ts</context>
+          <context context-type="linenumber">174</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3144044065912306787" datatype="html">
+        <source>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/route/reservations-list.component.ts</context>
+          <context context-type="linenumber">177</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/route/reservation-detail.component.ts</context>
+          <context context-type="linenumber">119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0e69fc7de5d88295ef8ae8938fd34ff5e5327e48" datatype="html">
+        <source>Ranking</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/route/reservations-list.component.ts</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="99323e43a294ddb9766916d0d67b9fa69431d9f9" datatype="html">
+        <source>Add Favorites</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/route/reservations-list.component.ts</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="497728370667410908" datatype="html">
+        <source>Create Reservation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/route/reservation-detail.component.ts</context>
+          <context context-type="linenumber">114</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9d254afa1f7e50154c67987bca862201d0c4ba78" datatype="html">
+        <source>Contact Name ...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/route/reservation-detail.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6934d8edd276d59e050006fe91b695ebad0218f8" datatype="html">
+        <source>Phone</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/route/reservation-detail.component.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c7958d835569ddb937a9c522e2505b9d86468ca5" datatype="html">
+        <source>Birth Date</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/route/reservation-detail.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2c5ff8fa9c9aaec93f97e37c9a0edcd797194573" datatype="html">
+        <source>Send</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/route/reservation-detail.component.ts</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8dd1239744e942f9fca5ad8636699908272ae745" datatype="html">
+        <source>World Class</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/layout/header.component.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="12aae66d461313784835b5bdd214217b4e4180b2" datatype="html">
+        <source>Software Development</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/layout/header.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d0139a4b47bcc8b15e6c544f7d72be72cd0e9371" datatype="html">
+        <source>Contact Type</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/util/dropdown-contact-type.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -14,8 +14,8 @@ import { AppService, HeaderData } from '../../app.service';
           <h2><strong>ISU</strong>Corp</h2>
         </div>
         <div class="slogan hide-on-mobile">
-          <h6>World Class</h6>
-          <h6>Software Development</h6>
+          <h6 i18n>World Class</h6>
+          <h6 i18n>Software Development</h6>
         </div>
         <div class="nav-link only-on-mobile">
           <a routerLink="{{ headerData?.navigationTarget }}">

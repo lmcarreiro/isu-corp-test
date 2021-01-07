@@ -33,7 +33,7 @@ import { PAGE_MARKER } from '../util/paginator.component';
               </div>
             </td>
             <td class="hide-on-mobile">
-              <div style="font-size: 0.9em;">Ranking</div>
+              <div style="font-size: 0.9em;" i18n>Ranking</div>
               <div>
                 <star-rating
                   [value]="reservation.ranking"
@@ -50,7 +50,7 @@ import { PAGE_MARKER } from '../util/paginator.component';
                 class="favorite favorite-{{ reservation.favorite ? 'selected' : 'unselected' }}"
                 (click)="toggleFavorite(reservation)"
               >
-                <span class="favorite-text hide-on-mobile">Add Favorites</span>
+                <span class="favorite-text hide-on-mobile" i18n>Add Favorites</span>
                 <span class="favorite-icon"></span>
               </div>
             </td>
@@ -153,11 +153,11 @@ export class ReservationsListComponent implements OnInit {
   }
 
   sortingOptions = [
-    { id: 'date-asc', name: 'By Date Ascending' },
-    { id: 'date-desc', name: 'By Date Descending' },
-    { id: 'contactName-asc', name: 'By Alphabetic Ascending' },
-    { id: 'contactName-desc', name: 'By Alphabetic Descending' },
-    { id: 'ranking-desc', name: 'By Ranking' },
+    { id: 'date-asc', name: $localize`By Date Ascending` },
+    { id: 'date-desc', name: $localize`By Date Descending` },
+    { id: 'contactName-asc', name: $localize`By Alphabetic Ascending` },
+    { id: 'contactName-desc', name: $localize`By Alphabetic Descending` },
+    { id: 'ranking-desc', name: $localize`By Ranking` },
   ];
 
   constructor(
@@ -169,13 +169,12 @@ export class ReservationsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.appService.setHeaderData({
-      title: 'Reservations List',
+      title: $localize`Reservations List`,
       showDescriptionOnMobile: false,
-      navigationLabel: 'Create reservation',
+      navigationLabel: $localize`Create reservation`,
       navigationTarget: '/reservation',
       navigationArrow: 'right',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      description: $localize`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     });
 
     this.route.params.subscribe(params => {

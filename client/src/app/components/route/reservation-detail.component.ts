@@ -21,6 +21,7 @@ import { ContactModel } from 'src/app/models/contact.model';
             (selectItem)="selectContact($event)"
             field="name"
             placeholder="Contact Name ..."
+            i18n-placeholder
           ></util-input-autocomplete>
         </div>
         <div class="contact-form-field full-width-on-mobile">
@@ -31,12 +32,14 @@ import { ContactModel } from 'src/app/models/contact.model';
             [(value)]="reservation.contact.phone"
             icon="phone"
             placeholder="Phone"
+            i18n-placeholder
           ></util-input>
         </div>
         <div class="contact-form-field full-width-on-mobile">
           <util-input-datepicker
             [(value)]="reservation.contact.birthDate"
             placeholder="Birth Date"
+            i18n-placeholder
           ></util-input-datepicker>
         </div>
       </div>
@@ -45,7 +48,7 @@ import { ContactModel } from 'src/app/models/contact.model';
         <util-rich-textarea [(text)]="reservation.description"></util-rich-textarea>
       </div>
       <div class="buttons">
-        <button (click)="save()" class="btn primary full-width-on-mobile">Send</button>
+        <button (click)="save()" class="btn primary full-width-on-mobile" i18n>Send</button>
       </div>
     </div>
   `,
@@ -108,13 +111,12 @@ export class ReservationDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.appService.setHeaderData({
-      title: 'Create Reservation',
+      title: $localize`Create Reservation`,
       showDescriptionOnMobile: true,
-      navigationLabel: 'Reservations List',
+      navigationLabel: $localize`Reservations List`,
       navigationTarget: '/reservations-list',
       navigationArrow: 'left',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      description: $localize`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
     });
     this.getReservation();
   }

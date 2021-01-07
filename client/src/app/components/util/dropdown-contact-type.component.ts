@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ContactTypeModel } from 'src/app/models/contact-type.model';
 import { ContactTypeService } from 'src/app/services/contact-type.service';
 
 @Component({
@@ -8,6 +7,7 @@ import { ContactTypeService } from 'src/app/services/contact-type.service';
     <util-dropdown
       [allowEmpty]="true"
       placeholder="Contact Type"
+      i18n-placeholder
       [options]="types"
       [selected]="selected"
       (selectedChange)="selectedChange.emit($event)"

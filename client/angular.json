@@ -21,10 +21,17 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "pt": "src/i18n/messages.pt.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize": ["en"],
             "outputPath": "dist/isu-corp-test",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -53,8 +60,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1024kb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
