@@ -12,7 +12,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReservationsListComponent } from './components/route/reservations-list.component';
 import { ReservationDetailComponent } from './components/route/reservation-detail.component';
-import { MessagesComponent } from './components/layout/messages.component';
 import { HeaderComponent } from './components/layout/header.component';
 import { DropdownComponent } from './components/util/dropdown.component';
 import { InputComponent } from './components/util/input.component';
@@ -27,7 +26,6 @@ import { InputDatepickerComponent } from './components/util/input-datepicker.com
     AppComponent,
     ReservationsListComponent,
     ReservationDetailComponent,
-    MessagesComponent,
     HeaderComponent,
     DropdownComponent,
     InputComponent,

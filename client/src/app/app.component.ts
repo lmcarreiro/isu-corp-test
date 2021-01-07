@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
     <div class="content">
       <div class="padding-top-20 hide-on-mobile"></div>
       <router-outlet></router-outlet>
-      <app-messages></app-messages>
     </div>
   `,
   styles: [

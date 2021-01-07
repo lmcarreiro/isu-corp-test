@@ -4,19 +4,18 @@ import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { ContactTypeModel } from '../models/contact-type.model';
 import { BaseService } from './base.service';
-import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContactTypeService extends BaseService {
-  constructor(http: HttpClient, messageService: MessageService) {
-    super('ContactType', http, messageService);
+  constructor(http: HttpClient) {
+    super('ContactType', http);
   }
 
   getContactTypes(): Observable<ContactTypeModel[]> {
     return this.http.get<ContactTypeModel[]>(this.baseUrl).pipe(
-      tap(_ => this.log('fetched contact types')),
+      tap(_ => console.log('fetched contact types')),
       catchError(this.handleError<ContactTypeModel[]>('getContactTypes', []))
     );
   }

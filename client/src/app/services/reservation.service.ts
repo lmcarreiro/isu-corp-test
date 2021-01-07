@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { MessageService } from './message.service';
 import { ReservationListItemModel } from '../models/reservation-list-item.model';
 import { emptyPagedResult, PagedResultModel } from '../models/paged-result.model';
 import { BaseService } from './base.service';
@@ -12,8 +11,8 @@ import { ReservationModel } from '../models/reservation.model';
   providedIn: 'root',
 })
 export class ReservationService extends BaseService {
-  constructor(http: HttpClient, messageService: MessageService) {
-    super('Reservation', http, messageService);
+  constructor(http: HttpClient) {
+    super('Reservation', http);
   }
 
   async getReservationById(id: number): Promise<ReservationModel | undefined> {
@@ -22,7 +21,7 @@ export class ReservationService extends BaseService {
         .get<ReservationModel>(`${this.baseUrl}/${id}`)
         .toPromise();
 
-      this.log(`fetched reservation id=${id}`);
+      console.log(`fetched reservation id=${id}`);
 
       return {
         ...reservation,
@@ -46,7 +45,7 @@ export class ReservationService extends BaseService {
         `${this.baseUrl}?page=${page}&sorting=${sorting}`
       )
       .pipe(
-        tap(_ => this.log('fetched reservations')),
+        tap(_ => console.log('fetched reservations')),
         catchError(
           this.handleError<PagedResultModel<ReservationListItemModel>>(
             'getReservations',
@@ -58,7 +57,7 @@ export class ReservationService extends BaseService {
 
   createReservation(reservation: ReservationModel): Observable<void> {
     return this.http.post(this.baseUrl, reservation, this.httpOptions).pipe(
-      tap(_ => this.log(`created reservation id=${reservation.id}`)),
+      tap(_ => console.log(`created reservation id=${reservation.id}`)),
       catchError(this.handleError<any>('createReservation'))
     );
   }
@@ -67,7 +66,7 @@ export class ReservationService extends BaseService {
     return this.http
       .post<void>(`${this.baseUrl}/${id}/ToggleFavorite/${flag}`, {}, this.httpOptions)
       .pipe(
-        tap(_ => this.log(`fetched reservation id=${id}`)),
+        tap(_ => console.log(`fetched reservation id=${id}`)),
         catchError(this.handleError<void>(`getReservationById id=${id}`))
       );
   }
