@@ -7,6 +7,7 @@ import { AppService } from '../../app.service';
 import { ReservationModel } from '../../models/reservation.model';
 import { ContactService } from 'src/app/services/contact.service';
 import { ContactModel } from 'src/app/models/contact.model';
+import { languageFormatSettings } from 'src/config';
 
 @Component({
   selector: 'route-reservation-detail',
@@ -33,6 +34,7 @@ import { ContactModel } from 'src/app/models/contact.model';
             icon="phone"
             placeholder="Phone"
             i18n-placeholder
+            [mask]="mask"
           ></util-input>
         </div>
         <div class="contact-form-field full-width-on-mobile">
@@ -100,6 +102,8 @@ export class ReservationDetailComponent implements OnInit {
   }
 
   reservation = this.emptyReservation;
+
+  mask = languageFormatSettings.phoneMaskFormat;
 
   constructor(
     private appService: AppService,

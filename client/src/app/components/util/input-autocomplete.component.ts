@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { icons } from './icons';
+import { icons } from 'src/config';
 
 @Component({
   selector: 'util-input-autocomplete',

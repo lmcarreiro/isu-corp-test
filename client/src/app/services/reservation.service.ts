@@ -7,7 +7,7 @@ import { ReservationListItemModel } from '../models/reservation-list-item.model'
 import { emptyPagedResult, PagedResultModel } from '../models/paged-result.model';
 import { BaseService } from './base.service';
 import { ReservationModel } from '../models/reservation.model';
-import { DATE_MOMENT_FORMAT } from '../components/util/datetime';
+import { languageFormatSettings } from 'src/config';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +29,9 @@ export class ReservationService extends BaseService {
         ...reservation,
         contact: {
           ...reservation.contact,
-          birthDate: moment(reservation.contact.birthDate).format(DATE_MOMENT_FORMAT),
+          birthDate: moment(reservation.contact.birthDate).format(
+            languageFormatSettings.dateMomentFormat
+          ),
         },
       };
     } catch {

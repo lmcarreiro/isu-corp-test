@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { icons } from './icons';
+import { icons } from 'src/config';
 
 @Component({
   selector: 'util-input',
@@ -12,6 +12,7 @@ import { icons } from './icons';
           [ngModel]="value"
           (ngModelChange)="valueChange.emit($event)"
           [placeholder]="placeholder"
+          [mask]="mask || ''"
         />
       </div>
     </div>
@@ -48,6 +49,8 @@ export class InputComponent implements OnInit {
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
 
   @Input() placeholder: string = '';
+
+  @Input() mask?: string;
 
   icons = icons;
 

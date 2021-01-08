@@ -45,7 +45,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/route/reservation-detail.component.ts</context>
-          <context context-type="linenumber">116</context>
+          <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8779307744299844511" datatype="html">
@@ -63,7 +63,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/route/reservation-detail.component.ts</context>
-          <context context-type="linenumber">119</context>
+          <context context-type="linenumber">123</context>
         </context-group>
       </trans-unit>
       <trans-unit id="0e69fc7de5d88295ef8ae8938fd34ff5e5327e48" datatype="html">
@@ -84,35 +84,35 @@
         <source>Create Reservation</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/route/reservation-detail.component.ts</context>
-          <context context-type="linenumber">114</context>
+          <context context-type="linenumber">118</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9d254afa1f7e50154c67987bca862201d0c4ba78" datatype="html">
         <source>Contact Name ...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/route/reservation-detail.component.ts</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6934d8edd276d59e050006fe91b695ebad0218f8" datatype="html">
         <source>Phone</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/route/reservation-detail.component.ts</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c7958d835569ddb937a9c522e2505b9d86468ca5" datatype="html">
         <source>Birth Date</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/route/reservation-detail.component.ts</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2c5ff8fa9c9aaec93f97e37c9a0edcd797194573" datatype="html">
         <source>Send</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/route/reservation-detail.component.ts</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">53</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8dd1239744e942f9fca5ad8636699908272ae745" datatype="html">
@@ -139,26 +139,34 @@
       <trans-unit id="1040071773752637993" datatype="html">
         <source>M0/d0/0000</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/util/datetime.ts</context>
-          <context context-type="linenumber">1</context>
+          <context context-type="sourcefile">src/config.ts</context>
+          <context context-type="linenumber">2</context>
         </context-group>
         <note priority="1" from="meaning">date mask format</note>
       </trans-unit>
       <trans-unit id="4885652492971319029" datatype="html">
         <source>MM/DD/YYYY</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/util/datetime.ts</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="sourcefile">src/config.ts</context>
+          <context context-type="linenumber">3</context>
         </context-group>
         <note priority="1" from="meaning">date moment format</note>
       </trans-unit>
       <trans-unit id="1756112231984293562" datatype="html">
         <source>mm/dd/yyyy</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/util/datetime.ts</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="sourcefile">src/config.ts</context>
+          <context context-type="linenumber">4</context>
         </context-group>
         <note priority="1" from="meaning">date format for display on placeholder</note>
+      </trans-unit>
+      <trans-unit id="7033328319966203979" datatype="html">
+        <source>(000) 000-0000</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/config.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <note priority="1" from="meaning">phone mask format</note>
       </trans-unit>
     </body>
   </file>
