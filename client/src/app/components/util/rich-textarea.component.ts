@@ -31,7 +31,7 @@ ckeditor.defaultConfig = {
 @Component({
   selector: 'util-rich-textarea',
   template: `
-    <div>
+    <div class="container" [class.invalid]="invalid">
       <ckeditor
         [ngModel]="text"
         (ngModelChange)="textChange.emit($event)"
@@ -39,13 +39,21 @@ ckeditor.defaultConfig = {
       ></ckeditor>
     </div>
   `,
-  styles: [],
+  styles: [
+    `
+      .container {
+        border: 1px solid #ccc;
+      }
+    `,
+  ],
 })
 export class RichTextareaComponent implements OnInit {
   editor = ckeditor;
 
   @Input() text!: string;
   @Output() textChange: EventEmitter<string> = new EventEmitter<string>();
+
+  @Input() invalid?: boolean;
 
   constructor() {}
 

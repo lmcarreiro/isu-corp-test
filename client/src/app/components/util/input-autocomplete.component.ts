@@ -5,7 +5,7 @@ import { icons } from 'src/config';
 @Component({
   selector: 'util-input-autocomplete',
   template: `
-    <div class="container" (click)="input.focus()">
+    <div class="container" [class.invalid]="invalid" (click)="input.focus()">
       <div class="img"><img [src]="icons[icon]" /></div>
       <div class="input">
         <ng-autocomplete
@@ -65,6 +65,8 @@ export class InputAutocompleteComponent<T> implements OnInit {
 
   @Input() value!: string;
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
+
+  @Input() invalid?: boolean;
 
   @Output() selectItem: EventEmitter<T> = new EventEmitter<T>();
 

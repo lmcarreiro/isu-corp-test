@@ -58,6 +58,14 @@ button.secondary {
   background: transparent;
 }
 
+.invalid {
+  border-color: red !important;
+}
+
+.invalid .ng-select-container {
+  border-color: red !important;
+}
+
 .padding-top-10 {
   padding-top: 10px;
 }

@@ -60,7 +60,18 @@ export class ReservationService extends BaseService {
   }
 
   createReservation(reservation: ReservationModel): Observable<void> {
-    return this.http.post(this.baseUrl, reservation, this.httpOptions).pipe(
+    const convertedReservation: ReservationModel = {
+      ...reservation,
+      contact: {
+        ...reservation.contact,
+        birthDate: moment(
+          reservation.contact.birthDate,
+          languageFormatSettings.dateMomentFormat
+        ).toISOString(),
+      },
+    };
+
+    return this.http.post(this.baseUrl, convertedReservation, this.httpOptions).pipe(
       tap(_ => console.log(`created reservation id=${reservation.id}`)),
       catchError(this.handleError<any>('createReservation'))
     );

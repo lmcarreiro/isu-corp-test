@@ -8,6 +8,7 @@ import { ReservationModel } from '../../models/reservation.model';
 import { ContactService } from 'src/app/services/contact.service';
 import { ContactModel } from 'src/app/models/contact.model';
 import { languageFormatSettings } from 'src/config';
+import { dateIsValid, phoneIsValid } from 'src/app/helpers/validation';
 
 @Component({
   selector: 'route-reservation-detail',
@@ -23,10 +24,14 @@ import { languageFormatSettings } from 'src/config';
             field="name"
             placeholder="Contact Name ..."
             i18n-placeholder
+            [invalid]="validated && invalidFields.includes('contact.name')"
           ></util-input-autocomplete>
         </div>
         <div class="contact-form-field full-width-on-mobile">
-          <util-dropdown-contact-type [(selected)]="typeId"></util-dropdown-contact-type>
+          <util-dropdown-contact-type
+            [(selected)]="typeId"
+            [invalid]="validated && invalidFields.includes('contact.typeId')"
+          ></util-dropdown-contact-type>
         </div>
         <div class="contact-form-field full-width-on-mobile">
           <util-input
@@ -35,6 +40,7 @@ import { languageFormatSettings } from 'src/config';
             placeholder="Phone"
             i18n-placeholder
             [mask]="mask"
+            [invalid]="validated && invalidFields.includes('contact.phone')"
           ></util-input>
         </div>
         <div class="contact-form-field full-width-on-mobile">
@@ -42,12 +48,16 @@ import { languageFormatSettings } from 'src/config';
             [(value)]="reservation.contact.birthDate"
             placeholder="Birth Date"
             i18n-placeholder
+            [invalid]="validated && invalidFields.includes('contact.birthDate')"
           ></util-input-datepicker>
         </div>
       </div>
       <div class="padding-top-20 hide-on-mobile"></div>
       <div>
-        <util-rich-textarea [(text)]="reservation.description"></util-rich-textarea>
+        <util-rich-textarea
+          [(text)]="reservation.description"
+          [invalid]="validated && invalidFields.includes('description')"
+        ></util-rich-textarea>
       </div>
       <div class="buttons">
         <button (click)="save()" class="btn primary full-width-on-mobile" i18n>Send</button>
@@ -93,6 +103,8 @@ export class ReservationDetailComponent implements OnInit {
       },
     };
   }
+
+  validated = false;
 
   get typeId(): string {
     return this.reservation.contact.typeId.toString();
@@ -145,7 +157,29 @@ export class ReservationDetailComponent implements OnInit {
     this.reservation.contact = contact;
   }
 
+  get invalidFields() {
+    // Using a spread (...) + generator (function*) here to have a strongly typed array with a
+    // union of string literals on the `invalidFields` field, so we can see compiler error on typos
+    return [
+      ...(function* (reservation: ReservationModel) {
+        if (!reservation.contact.name) yield 'contact.name';
+        if (!reservation.contact.typeId) yield 'contact.typeId';
+        if (!phoneIsValid(reservation.contact.phone)) yield 'contact.phone';
+        if (!dateIsValid(reservation.contact.birthDate)) yield 'contact.birthDate';
+        if (!reservation.description) yield 'description';
+      })(this.reservation),
+    ];
+  }
+
   save(): void {
-    this.reservationService.createReservation(this.reservation).subscribe(() => this.goBack());
+    if (this.invalidFields.length) {
+      this.validated = true;
+      return;
+    }
+
+    this.reservationService.createReservation(this.reservation).subscribe(() => {
+      // TODO: show error in case it doesn't create the record.
+      this.goBack();
+    });
   }
 }

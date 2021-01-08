@@ -12,6 +12,7 @@ import { ContactTypeService } from 'src/app/services/contact-type.service';
       [selected]="selected"
       (selectedChange)="selectedChange.emit($event)"
       icon="globe"
+      [invalid]="invalid"
     ></util-dropdown>
   `,
   styles: [],
@@ -21,6 +22,8 @@ export class DropdownContactTypeComponent implements OnInit {
 
   @Input() selected!: string;
   @Output() selectedChange: EventEmitter<string> = new EventEmitter<string>();
+
+  @Input() invalid?: boolean;
 
   constructor(private contactTypeService: ContactTypeService) {}
 

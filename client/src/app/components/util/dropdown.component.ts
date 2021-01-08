@@ -13,6 +13,7 @@ import { icons } from 'src/config';
       [ngModel]="selected"
       (ngModelChange)="selectedChange.emit($event)"
       class="custom"
+      [class.invalid]="invalid"
     >
       <ng-template ng-label-tmp let-item="item">
         <div class="template">
@@ -41,6 +42,8 @@ export class DropdownComponent implements OnInit {
 
   @Input() selected!: string;
   @Output() selectedChange: EventEmitter<string> = new EventEmitter<string>();
+
+  @Input() invalid?: boolean;
 
   @Input() allowEmpty: boolean = false;
 

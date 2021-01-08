@@ -4,7 +4,7 @@ import { icons } from 'src/config';
 @Component({
   selector: 'util-input',
   template: `
-    <div class="container" (click)="input.focus()">
+    <div class="container" [class.invalid]="invalid" (click)="input.focus()">
       <div class="img"><img [src]="icons[icon]" /></div>
       <div class="input">
         <input
@@ -13,6 +13,7 @@ import { icons } from 'src/config';
           (ngModelChange)="valueChange.emit($event)"
           [placeholder]="placeholder"
           [mask]="mask || ''"
+          [dropSpecialCharacters]="mask ? false : null"
         />
       </div>
     </div>
@@ -47,6 +48,8 @@ export class InputComponent implements OnInit {
 
   @Input() value!: string;
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
+
+  @Input() invalid?: boolean;
 
   @Input() placeholder: string = '';
 

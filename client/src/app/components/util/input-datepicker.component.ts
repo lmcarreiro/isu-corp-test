@@ -4,7 +4,7 @@ import { languageFormatSettings, icons } from 'src/config';
 @Component({
   selector: 'util-input-datepicker',
   template: `
-    <div class="container">
+    <div class="container" [class.invalid]="invalid">
       <div class="img"><img [src]="icon" /></div>
       <div class="input">
         <input
@@ -13,6 +13,7 @@ import { languageFormatSettings, icons } from 'src/config';
           (ngModelChange)="valueChange.emit($event)"
           [leadZeroDateTime]="true"
           [mask]="dateMaskFormat"
+          [dropSpecialCharacters]="false"
           [dpDayPicker]="{ format: datePickerFormat }"
           placeholder="{{ placeholder }} {{ dateDisplayFormat }}"
         />
@@ -49,6 +50,8 @@ export class InputDatepickerComponent implements OnInit {
 
   @Input() value!: string;
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
+
+  @Input() invalid?: boolean;
 
   icon = icons.calendar;
   datePickerConfig = {};
