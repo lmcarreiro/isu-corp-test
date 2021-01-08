@@ -63,6 +63,10 @@ namespace IsuCorpTest.Data
                 new () { Contact = contacts[5], DateTime = new DateTime(2020, 5, 23, 20, 0, 0), Favorite = false, Ranking = 2   , Description = "Test number <b>6</b>" },
                 new () { Contact = contacts[3], DateTime = new DateTime(2020, 5, 24, 21, 0, 0), Favorite = true , Ranking = 1   , Description = "Test number <b>7</b>" },
                 new () { Contact = contacts[4], DateTime = new DateTime(2020, 5, 25, 20, 0, 0), Favorite = false, Ranking = null, Description = "Test number <b>8</b>" },
+                new () { Contact = contacts[4], DateTime = new DateTime(2020, 6, 17, 21, 0, 0), Favorite = true , Ranking = 2   , Description = "Test number <b>9</b>" },
+                new () { Contact = contacts[5], DateTime = new DateTime(2020, 6, 23, 20, 0, 0), Favorite = false, Ranking = 3   , Description = "Test number <b>10</b>" },
+                new () { Contact = contacts[3], DateTime = new DateTime(2020, 6, 24, 21, 0, 0), Favorite = true , Ranking = 4   , Description = "Test number <b>11</b>" },
+                new () { Contact = contacts[4], DateTime = new DateTime(2020, 6, 25, 20, 0, 0), Favorite = false, Ranking = 5   , Description = "Test number <b>12</b>" },
             };
             Context.Reservation.AddRange(reservations);
 
