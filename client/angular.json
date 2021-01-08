@@ -31,7 +31,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "localize": ["en"],
+            // TODO: i18n disabled because of relative paths issue with assets on production build.
+            // If enabling this again, need to set the `build` script on package.json to:
+            //   ng build --prod --localize
+            //"localize": ["en"],
             "outputPath": "dist/isu-corp-test",
             "index": "src/index.html",
             "main": "src/main.ts",

@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --localize",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "i18n": "ng extract-i18n --format xlf --output-path src/i18n --out-file messages.en.xlf",
