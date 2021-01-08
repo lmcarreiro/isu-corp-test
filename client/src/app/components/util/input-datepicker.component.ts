@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { icons } from './icons';
+import { DATE_MASK_FORMAT, DATE_MOMENT_FORMAT, DATE_DISPLAY_FORMAT } from './datetime';
 
 @Component({
   selector: 'util-input-datepicker',
@@ -14,7 +15,7 @@ import { icons } from './icons';
           [leadZeroDateTime]="true"
           [mask]="dateMaskFormat"
           [dpDayPicker]="{ format: datePickerFormat }"
-          placeholder="{{ placeholder }} ({{ dateDisplayFormat }})"
+          placeholder="{{ placeholder }} {{ dateDisplayFormat }}"
         />
       </div>
     </div>
@@ -53,9 +54,9 @@ export class InputDatepickerComponent implements OnInit {
   icon = icons.calendar;
   datePickerConfig = {};
 
-  dateMaskFormat = $localize`:date mask format|:M0/d0/0000`;
-  datePickerFormat = $localize`:date picker format|:MM/DD/YYYY`;
-  dateDisplayFormat = $localize`:date format for display on placeholder|:MM/DD/YYYY`;
+  dateMaskFormat = DATE_MASK_FORMAT;
+  datePickerFormat = DATE_MOMENT_FORMAT;
+  dateDisplayFormat = DATE_DISPLAY_FORMAT;
 
   constructor() {}
 

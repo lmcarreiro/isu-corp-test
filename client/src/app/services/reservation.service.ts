@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import * as moment from 'moment';
 import { ReservationListItemModel } from '../models/reservation-list-item.model';
 import { emptyPagedResult, PagedResultModel } from '../models/paged-result.model';
 import { BaseService } from './base.service';
 import { ReservationModel } from '../models/reservation.model';
+import { DATE_MOMENT_FORMAT } from '../components/util/datetime';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +29,7 @@ export class ReservationService extends BaseService {
         ...reservation,
         contact: {
           ...reservation.contact,
-          birthDate: reservation.contact.birthDate.substr(0, 10),
+          birthDate: moment(reservation.contact.birthDate).format(DATE_MOMENT_FORMAT),
         },
       };
     } catch {
