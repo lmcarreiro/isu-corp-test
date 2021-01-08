@@ -1,0 +1,9 @@
+.git/
+.vscode/
+server/.vs/
+**/bin
+**/obj
+**/node_modules
+**/wwwroot/dist
+**/Dockerfile*
+**/*.log
