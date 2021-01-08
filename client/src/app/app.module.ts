@@ -21,6 +21,7 @@ import { PaginatorComponent } from './components/util/paginator.component';
 import { DropdownContactTypeComponent } from './components/util/dropdown-contact-type.component';
 import { InputAutocompleteComponent } from './components/util/input-autocomplete.component';
 import { InputDatepickerComponent } from './components/util/input-datepicker.component';
+import { humanFriendlyDateTime } from './helpers/humanFriendlyDateTime.pipe';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { InputDatepickerComponent } from './components/util/input-datepicker.com
     DropdownContactTypeComponent,
     InputAutocompleteComponent,
     InputDatepickerComponent,
+    humanFriendlyDateTime,
   ],
   imports: [
     BrowserModule,

@@ -29,7 +29,7 @@ import { PAGE_MARKER } from '../util/paginator.component';
             <td>
               <div>
                 <div class="title">{{ reservation.contactName }}</div>
-                <div class="date">{{ reservation.reservationDate }}</div>
+                <div class="date">{{ reservation.reservationDate | humanFriendlyDateTime }}</div>
               </div>
             </td>
             <td class="hide-on-mobile">
