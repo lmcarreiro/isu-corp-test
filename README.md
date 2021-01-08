@@ -54,3 +54,7 @@ yarn
 # Start client with dev mode
 yarn start
 ```
+
+## Architecture
+
+![Architecture](./docs/full-architecture.png)
