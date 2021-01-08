@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="3104055680056509182" datatype="html">
         <source>By Date Ascending</source>
@@ -157,6 +157,30 @@
           <context context-type="sourcefile">src/app/components/util/dropdown-contact-type.component.ts</context>
           <context context-type="linenumber">9</context>
         </context-group>
+      </trans-unit>
+      <trans-unit id="1040071773752637993" datatype="html">
+        <source>d0/M0/0000</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/util/input-datepicker.component.ts</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+        <note priority="1" from="meaning">date mask format</note>
+      </trans-unit>
+      <trans-unit id="5517896091708056540" datatype="html">
+        <source>DD/MM/YYYY</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/util/input-datepicker.component.ts</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+        <note priority="1" from="meaning">date picker format</note>
+      </trans-unit>
+      <trans-unit id="625049539757242614" datatype="html">
+        <source>DD/MM/YYYY</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/util/input-datepicker.component.ts</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <note priority="1" from="meaning">date format for display on placeholder</note>
       </trans-unit>
     </body>
   </file>

@@ -7,6 +7,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { RatingModule } from 'ng-starrating';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,6 +46,7 @@ import { InputDatepickerComponent } from './components/util/input-datepicker.com
     AutocompleteLibModule,
     RatingModule,
     CKEditorModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

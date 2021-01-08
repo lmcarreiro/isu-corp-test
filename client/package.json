@@ -27,6 +27,7 @@
     "angular-ng-autocomplete": "^2.0.4",
     "ng-starrating": "^1.0.20",
     "ng2-date-picker": "^11.0.0",
+    "ngx-mask": "^11.1.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

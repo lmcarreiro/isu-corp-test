@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
 import { icons } from './icons';
 
 @Component({
@@ -8,15 +7,15 @@ import { icons } from './icons';
     <div class="container">
       <div class="img"><img [src]="icon" /></div>
       <div class="input">
-        <dp-date-picker
+        <input
           #input
           [ngModel]="value"
           (ngModelChange)="valueChange.emit($event)"
-          [config]="{
-            format: 'YYYY-MM-DD'
-          }"
-          [placeholder]="placeholder"
-        ></dp-date-picker>
+          [leadZeroDateTime]="true"
+          [mask]="dateMaskFormat"
+          [dpDayPicker]="{ format: datePickerFormat }"
+          placeholder="{{ placeholder }} ({{ dateDisplayFormat }})"
+        />
       </div>
     </div>
   `,
@@ -53,6 +52,10 @@ export class InputDatepickerComponent implements OnInit {
 
   icon = icons.calendar;
   datePickerConfig = {};
+
+  dateMaskFormat = $localize`:date mask format|:M0/d0/0000`;
+  datePickerFormat = $localize`:date picker format|:MM/DD/YYYY`;
+  dateDisplayFormat = $localize`:date format for display on placeholder|:MM/DD/YYYY`;
 
   constructor() {}
 
