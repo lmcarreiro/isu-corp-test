@@ -55,7 +55,7 @@ namespace IsuCorpTest.Web
             }
             else
             {
-                // TODO: serve static files
+                app.UseStaticFiles();
             }
 
             app.UseRouting();
@@ -65,6 +65,10 @@ namespace IsuCorpTest.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                if (!env.IsDevelopment()) {
+                    endpoints.MapFallbackToFile("/index.html");
+                }
             });
 
             testData.InsertTestData();
