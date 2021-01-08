@@ -57,4 +57,6 @@ yarn start
 
 ## Architecture
 
+If you are checking this from GitHub repo README.md page, I recommend to set the page zoom to 300% (on Google Chrome)
+
 ![Architecture](./docs/full-architecture.png)
