@@ -39,7 +39,7 @@ namespace IsuCorpTest.Web.Controllers
 
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ReservationController : CustomControllerBase
     {
         private ReservationService ReservationService { get; init; }
@@ -69,7 +69,7 @@ namespace IsuCorpTest.Web.Controllers
 
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ContactTypeController : CustomControllerBase
     {
         private ContactService ContactService { get; init; }
@@ -85,7 +85,7 @@ namespace IsuCorpTest.Web.Controllers
 
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ContactController : CustomControllerBase
     {
         private ContactService ContactService { get; init; }
